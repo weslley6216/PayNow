@@ -16,6 +16,12 @@
 
     <nav>
     <div id="session">
+
+      <% if admin_signed_in? %>
+        Olá, <%= current_admin.email %>
+        <%= link_to 'Meios de Pagamentos', admin_payment_methods_path %>
+      <% end %>
+
       <% if admin_signed_in? %>
         <%= link_to 'Sair', destroy_admin_session_path, method: :delete  %>
       <% else %>
@@ -23,9 +29,6 @@
         <%= link_to 'Entrar' %>
       <% end %>
 
-      <% if admin_signed_in? %>
-        Olá, <%= current_admin.email %>
-      <% end %>
   </div>
     </nav>
 

@@ -1,0 +1,12 @@
+<h1>Meios de Pagamentos</h1>
+
+<% if @payment_methods.empty? %>
+  <%= 'Nenhum meio de pagamento disponível' %>
+<% end %>
+
+<% @payment_methods.each do |payment_method| %>
+  <%= link_to payment_method.name, admin_payment_method_path(payment_method) %>
+  <%= payment_method.active ? 'Ativo' : 'Inativo' %>
+<% end %>
+
+<%= link_to 'Voltar', root_path %>

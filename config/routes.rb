@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :admins
   root to: 'home#index'
+  devise_for :admins
+
+  namespace :admin do
+    resources :payment_methods, only: %i[index show]
+  end
 end
