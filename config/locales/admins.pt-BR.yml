@@ -1,0 +1,43 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      admin:
+        one: 'Administrador(a)'
+        other: 'Administradores(as)'
+    attributes:
+      admin:
+        email: 'Email'
+        password: 'Senha'
+        password_confirmation: 'Confirmação de Senha'
+  admins:
+    registrations:
+      new:
+        submit: 'Criar conta'
+        title: 'Novo Administrador'
+        password: 'Senha'
+        characters_min: 'caracteres no mínimo'
+    sessions:
+      new:
+        title: 'Entrar'
+        submit: 'Entrar'
+        remember_me: 'Lembrar de mim'
+    shared:
+      links:
+        log_in: 'Entrar'
+        sign_up: 'Cadastre-se'
+        forgot: 'Esqueceu sua senha?'
+    passwords:
+      new:
+        title: 'Esqueceu sua Senha?'
+        forgot_password: 'Envie-me instruções de redefinição de senha'
+      edit:
+        title: 'Trocar Senha'
+        new_password: 'Nova Senha'
+        new_password_confirm: 'Confirmar Nova Senha'
+        change_my_password: 'Mudar Minha Senha'
+
+
+
+        
+      
