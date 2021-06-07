@@ -3,10 +3,10 @@ require 'rails_helper'
 describe 'and view the payment methods' do
   it 'successfully' do
     PaymentMethod.create!(name: 'Boleto Bancário',
-                          tax: 8, max_tax: 15, active: true)
+                          tax: 8, max_tax: 15, status: true)
 
     PaymentMethod.create!(name: 'Cartão de Crédito',
-                          tax: 12, max_tax: 20, active: false)
+                          tax: 12, max_tax: 20, status: false)
 
     login_admin
     visit root_path
@@ -23,10 +23,10 @@ describe 'and view the payment methods' do
 
   it 'and view details' do
     PaymentMethod.create!(name: 'Boleto Bancário',
-                          tax: 8, max_tax: 15, active: true)
+                          tax: 8, max_tax: 15, status: true)
 
     PaymentMethod.create!(name: 'Cartão de Crédito',
-                          tax: 12, max_tax: 20, active: false)
+                          tax: 12, max_tax: 20, status: false)
 
     login_admin
     visit admin_payment_methods_path

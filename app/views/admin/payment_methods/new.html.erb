@@ -1,0 +1,31 @@
+<% if @payment_method.errors.present?%>
+  <p>Foram encontrados <%= @payment_method.errors.count  %> erro(s): </p>
+  <ul>
+    <% @payment_method.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+  
+  
+  <h1>Novo Meio de Pagamento</h1>
+
+<%= form_with model: [:admin, @payment_method] do |form| %>
+  <p><%= form.label :name %></p>
+  <p><%= form.text_field :name %></p>
+  <p><%= form.label :tax %></p>
+  <p><%= form.number_field :tax %></p>
+  <p><%= form.label :max_tax %></p>
+  <p><%= form.number_field :max_tax %></p>
+  <p><%= form.label :status %></p>
+  <div>
+    <%= form.radio_button :status, true %>
+    <%= form.label 'Ativo' %>
+    <%= form.radio_button :status, false %>
+    <%= form.label 'Inativo' %>
+  </div>
+  <p><%= form.label :icone, 'Ícone' %></p>
+  <p><%= form.file_field :icone %></p>
+  <p><%= form.submit 'Criar Meio de Pagamento' %></p>
+
+<% end %>

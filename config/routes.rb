@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   devise_for :admins
 
   namespace :admin do
-    resources :payment_methods, only: %i[index show]
+    resources :payment_methods, only: %i[index show new create]
   end
 end

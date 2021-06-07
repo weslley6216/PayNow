@@ -6,7 +6,8 @@
 
 <% @payment_methods.each do |payment_method| %>
   <%= link_to payment_method.name, admin_payment_method_path(payment_method) %>
-  <%= payment_method.active ? 'Ativo' : 'Inativo' %>
+  <%= payment_method.status ? 'Ativo' : 'Inativo' %>
 <% end %>
 
 <%= link_to 'Voltar', root_path %>
+<%= link_to 'Cadastrar Meio de Pagamento', new_admin_payment_method_path %>

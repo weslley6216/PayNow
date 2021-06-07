@@ -40,9 +40,8 @@ describe 'Admin account management' do
 
   context 'logout' do
     it 'successfully' do
-      admin = Admin.create!(email: 'admin@paynow.com.br', password: '123456')
 
-      login_as admin, scope: :admin
+      login_admin
       visit root_path
       click_on 'Sair'
 

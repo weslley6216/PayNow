@@ -1,6 +1,10 @@
+<% if @payment_method.icone.attached? %>
+  <%= image_tag @payment_method.icone, size: '100x100' %>
+<% end %>
+
 <h1><%= @payment_method.name %></h1>
 <p><%= number_to_percentage @payment_method.tax, precision: 0, format: "%n %" %></p>
 <p><%= number_to_currency @payment_method.max_tax %></p>
-<p><%= @payment_method.active ? 'Ativo' : 'Inativo' %></p>
+<p><%= @payment_method.status ? 'Ativo' : 'Inativo' %></p>
 
 <%= link_to "Voltar", admin_payment_methods_path %>
