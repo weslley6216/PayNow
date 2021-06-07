@@ -8,7 +8,7 @@
 <% end %>
   
   
-  <h1>Novo Meio de Pagamento</h1>
+  <h1>Atualizar Meio de Pagamento</h1>
 
 <%= form_with model: [:admin, @payment_method] do |form| %>
   <p><%= form.label :name %></p>
@@ -26,6 +26,6 @@
   </div>
   <p><%= form.label :icone, 'Ícone' %></p>
   <p><%= form.file_field :icone %></p>
-  <p><%= form.submit 'Criar' %></p>
+  <p><%= form.submit 'Atualizar' %></p>
 
 <% end %>

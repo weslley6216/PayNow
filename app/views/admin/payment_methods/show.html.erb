@@ -7,4 +7,5 @@
 <p><%= number_to_currency @payment_method.max_tax %></p>
 <p><%= @payment_method.status ? 'Ativo' : 'Inativo' %></p>
 
+<%= link_to 'Editar', edit_admin_payment_method_path %>
 <%= link_to "Voltar", admin_payment_methods_path %>

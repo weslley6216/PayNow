@@ -13,7 +13,7 @@ describe 'Admin registers payment methods' do
     fill_in 'Taxa Máxima em (R$)', with: 15
     #choose 'id#ativo'
     attach_file 'Ícone', Rails.root.join('spec/fixtures/boleto.png')
-    click_on 'Criar Meio de Pagamento'
+    click_on 'Criar'
 
     expect(current_path).to eq(admin_payment_method_path(PaymentMethod.last))
     expect(page).to have_content('Boleto Bancário')
@@ -32,7 +32,7 @@ describe 'Admin registers payment methods' do
     fill_in 'Nome', with: ''
     fill_in 'Taxa por Cobrança em (%)', with: ''
     fill_in 'Taxa Máxima em (R$)', with: ''
-    click_on 'Criar Meio de Pagamento'
+    click_on 'Criar'
 
     expect(page).to have_content('não pode ficar em branco', count: 3)
   end
@@ -48,7 +48,7 @@ describe 'Admin registers payment methods' do
     fill_in 'Nome', with: 'Boleto Bancário'
     fill_in 'Taxa por Cobrança em (%)', with: 8
     fill_in 'Taxa Máxima em (R$)', with: 15
-    click_on 'Criar Meio de Pagamento'
+    click_on 'Criar'
 
     expect(page).to have_content('já está em uso')
   end
