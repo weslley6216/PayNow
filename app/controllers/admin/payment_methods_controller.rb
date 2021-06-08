@@ -35,6 +35,12 @@ class Admin::PaymentMethodsController < ApplicationController
     end
   end
 
+  def destroy
+    @payment_method = PaymentMethod.find(params[:id])
+    @payment_method.destroy
+    redirect_to admin_payment_methods_path, notice: 'Meio de pagamento removido com sucesso '
+  end
+
   private
 
   def payment_method_params
