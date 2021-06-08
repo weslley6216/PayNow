@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin create account' do
-  xit 'only domain "@paynow.com.br"' do
-  end
+describe Admin do
+  it { should allow_value('admin@hotmail.com.br').for(:email).with_message('Email não é válido') }
+  it { should allow_value('admin@paynow.com.br').for(:email) }
 end
