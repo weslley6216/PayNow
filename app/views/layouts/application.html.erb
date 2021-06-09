@@ -36,16 +36,34 @@
     </li> 
   </ul>
 
+
+
+    <% elsif user_signed_in? %>
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        Olá, <%= current_user.email %>
+      </li>
+
+      <li class="nav-item">
+        <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+      </li> 
+
+      <li class="nav-item">
+        <%= link_to 'Empresas', '#', class: 'nav-link' %>
+      </li>
+    </ul>
+
     <% else %>
 
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item">
-      <%= link_to 'Cadastre-se', '#', class: 'nav-link' %>
-    </li>
-    <li id="login" class="nav-item">
-      <%= link_to 'Entrar','#', class: 'nav-link' %>
-    </li>
-  </ul>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to 'Cadastre-se', new_user_registration_path, class: 'nav-link' %>
+      </li>
+      <li id="login" class="nav-item">
+        <%= link_to 'Entrar', new_user_session_path, class: 'nav-link' %>
+      </li>
+    </ul>
 
   <% end %>
 
