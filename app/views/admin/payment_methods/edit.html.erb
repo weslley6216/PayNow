@@ -14,18 +14,8 @@
   <p><%= form.label :name %></p>
   <p><%= form.text_field :name %></p>
   <p><%= form.label :tax %></p>
-  <p><%= form.number_field :tax %></p>
+  <p><%= form.number_field :tax, step: 0.1 %></p>
   <p><%= form.label :max_tax %></p>
-  <p><%= form.number_field :max_tax %></p>
-  <p><%= form.label :status %></p>
-  <div>
-    <%= form.radio_button :status, true %>
-    <%= form.label 'Ativo' %>
-    <%= form.radio_button :status, false %>
-    <%= form.label 'Inativo' %>
-  </div>
-  <p><%= form.label :icone, 'Ícone' %></p>
-  <p><%= form.file_field :icone %></p>
+  <p><%= form.number_field :max_tax, step: 0.1 %></p>
   <p><%= form.submit 'Atualizar' %></p>
-
 <% end %>
