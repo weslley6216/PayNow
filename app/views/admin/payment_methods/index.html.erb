@@ -19,15 +19,13 @@
     <% @payment_methods.each do |payment_method| %>
       <tr>
         <td><%= link_to payment_method.name, admin_payment_method_path(payment_method) %></td>
-        <td> <%= image_tag payment_method.icon, size: "40x40" %>
+        <td> <%= image_tag payment_method.icon, size: "40" if payment_method.icon.attached? %>
         <td><%= payment_method.status ? 'Ativo' : 'Inativo' %></td>
       </tr>
     <% end %>
   </tbody>
-
-
 </table>
 </div>
 
 <%= link_to 'Voltar', root_path, class: 'btn btn-primary' %>
-<%= link_to 'Cadastrar Meio de Pagamento', new_admin_payment_method_path, class: 'btn btn-primary'  %>
+<%= link_to 'Cadastrar Meio de Pagamento', new_admin_payment_method_path, class: 'btn btn-primary' %>

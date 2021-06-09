@@ -1,5 +1,5 @@
 <% if @payment_method.icon.attached? %>
-  <%= image_tag @payment_method.icon, size: '100x100' %>
+  <%= image_tag @payment_method.icon, size: '150' %>
 <% end %>
 
 <h1><%= @payment_method.name %></h1>
@@ -11,6 +11,6 @@
 <dt><%= @payment_method.class.human_attribute_name(:status) %></dt>
 <dd><%= @payment_method.status ? 'Ativo' : 'Inativo' %></dd>
 
-<%= link_to 'Editar', edit_admin_payment_method_path(@payment_method) %>
-<%= link_to "Voltar", admin_payment_methods_path %>
-<%= link_to 'Apagar', [:admin, @payment_method], method: :delete, data: { confirm: 'Are you sure? '} %>
+<%= link_to 'Editar', edit_admin_payment_method_path(@payment_method), class: 'btn btn-primary'%>
+<%= link_to "Voltar", admin_payment_methods_path, class: 'btn btn-primary' %>
+<%= link_to 'Apagar', [:admin, @payment_method], method: :delete, data: { confirm: 'Are you sure? '}, class: 'btn btn-primary'%>
