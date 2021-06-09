@@ -3,6 +3,10 @@ class PaymentMethod < ApplicationRecord
 
   has_one_attached :icon
 
+  validates :tax, :max_tax, numericality: { greater_than_or_equal_to: 0 }
+  validates :form_of_payment, :name, :tax, :max_tax, presence: true
+  validates :name, uniqueness: { case_sensitive: false }
+
   enum form_of_payment: { bank_slip: 1, credit_card: 2, pix: 3 }
 
   private
