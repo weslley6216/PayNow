@@ -8,19 +8,18 @@ describe 'Admin registers payment methods' do
     click_on 'Meios de Pagamento'
     click_on 'Cadastrar Meio de Pagamento'
 
-    fill_in 'Nome', with: 'Boleto Bancário'
+    select 'Boleto', from: 'Forma de Pagamento'
+    fill_in 'Nome', with: 'Boleto Banco Laranja'
     fill_in 'Taxa por Cobrança em (%)', with: 8
     fill_in 'Taxa Máxima em (R$)', with: 15
-    #choose 'id#ativo'
-    attach_file 'Ícone', Rails.root.join('spec/fixtures/boleto.png')
     click_on 'Criar'
 
     expect(current_path).to eq(admin_payment_method_path(PaymentMethod.last))
-    expect(page).to have_content('Boleto Bancário')
-    expect(page).to have_content('8 %')
+    expect(page).to have_content('Boleto Banco Laranja')
+    expect(page).to have_content('8,0 %')
     expect(page).to have_content('R$ 15,00')
-    expect(page).to have_css('img[src*="boleto.png"]')
     expect(page).to have_link('Voltar', href: admin_payment_methods_path)
+    expect(PaymentMethod.last.icon).to be_attached
   end
 
   it 'and attributes cannot be blank' do
@@ -29,23 +28,26 @@ describe 'Admin registers payment methods' do
     visit admin_payment_methods_path
     click_on 'Cadastrar Meio de Pagamento'
 
+    select 'Selecione', from: 'Forma de Pagamento'
     fill_in 'Nome', with: ''
     fill_in 'Taxa por Cobrança em (%)', with: ''
     fill_in 'Taxa Máxima em (R$)', with: ''
     click_on 'Criar'
 
-    expect(page).to have_content('não pode ficar em branco', count: 3)
+    expect(page).to have_content('não pode ficar em branco', count: 4)
   end
 
   it 'and name must be unique' do
-    PaymentMethod.create!(name: 'Boleto Bancário',
-                          tax: 8, max_tax: 15, status: true)
+    PaymentMethod.create!(name: 'Pix Banco Roxinho',
+                          tax: 8, max_tax: 15,
+                          status: true, form_of_payment: 3)
 
     login_admin
     visit admin_payment_methods_path
     click_on 'Cadastrar Meio de Pagamento'
 
-    fill_in 'Nome', with: 'Boleto Bancário'
+    select 'Pix', from: 'Forma de Pagamento'
+    fill_in 'Nome', with: 'Pix Banco Roxinho'
     fill_in 'Taxa por Cobrança em (%)', with: 8
     fill_in 'Taxa Máxima em (R$)', with: 15
     click_on 'Criar'

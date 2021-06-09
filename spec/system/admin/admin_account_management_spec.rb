@@ -6,9 +6,6 @@ describe 'Admin account management' do
       Admin.create!(email: 'admin@paynow.com.br', password: '123456')
 
       visit new_admin_session_path
-      within 'div#session' do
-        click_on 'Entrar'
-      end
       fill_in 'Email', with: 'admin@paynow.com.br'
       fill_in 'Senha', with: '123456'
       within 'div#login' do
@@ -26,12 +23,9 @@ describe 'Admin account management' do
       Admin.create!(email: 'admin@paynow.com.br', password: '123456')
       
       visit new_admin_session_path
-      within 'div#session' do
-        click_on 'Entrar'
-      end
       fill_in 'Email', with: ''
       fill_in 'Senha', with: ''
-      within 'form' do
+      within 'div#login' do
         click_on 'Entrar'
       end
     end
