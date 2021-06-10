@@ -1,0 +1,15 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      company:
+        one: 'Empresa'
+        other: 'Empresas'
+    attributes:
+      company:
+        corporate_name: 'Razão Social'
+        cnpj: 'CNPJ'
+        billing_address: 'Endereço de Faturamento'
+        billing_email: 'Email para Faturamento'
+  
+        
