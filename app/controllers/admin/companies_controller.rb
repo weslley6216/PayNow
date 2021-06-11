@@ -1,4 +1,6 @@
 class Admin::CompaniesController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @companies = Company.all
   end
@@ -18,6 +20,12 @@ class Admin::CompaniesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @company = Company.find(params[:id])
+    @company.destroy
+    redirect_to admin_companies_path, notice: 'Empresa removida com sucesso'
   end
 
   private

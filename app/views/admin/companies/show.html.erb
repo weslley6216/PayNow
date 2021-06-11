@@ -9,5 +9,6 @@
 <dt><%= @company.class.human_attribute_name(:token) %></dt>
 <dd><%= @company.token %></dd>
 
-<%= link_to 'Voltar', admin_companies_path %>
-<%= link_to 'Editar', edit_admin_company_path(@company) %>
+<%= link_to 'Voltar', admin_companies_path, class: 'btn btn-primary' %>
+<%= link_to 'Editar', edit_admin_company_path(@company), class: 'btn btn-primary' %>
+<%= link_to 'Apagar', admin_company_path(@company), method: :delete, data: { confirm: 'Are you sure? '}, class: 'btn btn-primary'%>

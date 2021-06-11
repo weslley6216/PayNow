@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :payment_methods
-    resources :companies, only: %i[index show edit update]
+    resources :companies
   end
 
   namespace :user do
