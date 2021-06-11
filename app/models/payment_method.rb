@@ -16,13 +16,14 @@ class PaymentMethod < ApplicationRecord
 
     if PaymentMethod.last.bank_slip?
       icon.attach(io: File.open(Rails.root.join('app/assets/images/bank_slip.png')),
-                  filename: 'pix.png')
+                  filename: 'bank_slip.png')
     elsif PaymentMethod.last.credit_card?
       icon.attach(io: File.open(Rails.root.join('app/assets/images/credit_card.jpg')),
-                  filename: 'pix.png')
+                  filename: 'credit_card.jpg')
     elsif PaymentMethod.last.pix?
       icon.attach(io: File.open(Rails.root.join('app/assets/images/pix.png')),
                   filename: 'pix.png')
     end
+    
   end
 end

@@ -4,7 +4,7 @@ class Admin < ApplicationRecord
   devise :database_authenticatable, :recoverable,
          :rememberable, :validatable
 
-  VALID_EMAIL = /\A[\w.-]+@\paynow\.com\.br\z/
+  VALID_EMAIL = /\A[a-z0-9+_.-]+@(?=paynow)+\p{L}+\.\p{L}+\.br\z/
   validates :email, length: { maximum: 255 },
                     format: { with: VALID_EMAIL }
 end
