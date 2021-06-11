@@ -1,0 +1,13 @@
+<h1><%= @company.corporate_name %></h1>
+
+<dt><%= @company.class.human_attribute_name(:cnpj) %></dt>
+<dd><%= @company.cnpj %></dd>
+<dt><%= @company.class.human_attribute_name(:billing_address) %></dt>
+<dd><%= @company.billing_address %></dd>
+<dt><%= @company.class.human_attribute_name(:billing_email ) %></dt>
+<dd><%= @company.billing_email  %></dd>
+<dt><%= @company.class.human_attribute_name(:token) %></dt>
+<dd><%= @company.token %></dd>
+
+<%= link_to 'Voltar', admin_companies_path %>
+<%= link_to 'Editar', edit_admin_company_path(@company) %>

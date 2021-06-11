@@ -1,0 +1,16 @@
+<h1>Editando Cadastro de Empresa</h1>
+
+<%= form_with model: [:admin, @company] do |form| %> 
+
+  <p><%= form.label :corporate_name %></p>
+  <p><%= form.text_field :corporate_name %></p>
+  <p><%= form.label :cnpj %></p>
+  <p><%= form.text_field :cnpj %></p>
+  <p><%= form.label :billing_address %></p>
+  <p><%= form.text_field :billing_address %></p>
+  <p><%= form.label :billing_email %></p>
+  <p><%= form.text_field :billing_email %></p>
+  
+  <p><%= form.submit 'Atualizar' %></p>
+
+<% end %>
