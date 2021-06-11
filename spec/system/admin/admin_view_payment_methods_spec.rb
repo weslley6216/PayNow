@@ -49,6 +49,5 @@ describe 'and view the payment methods' do
     visit admin_payment_methods_path
 
     expect(page).to have_content('Nenhum meio de pagamento disponível')
-
   end
 end

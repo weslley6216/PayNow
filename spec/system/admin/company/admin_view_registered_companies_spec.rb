@@ -9,7 +9,7 @@ describe 'Admin view registered companies' do
                     token: SecureRandom.base58(20))
 
     Company.create!(corporate_name: 'CodeSaga S.A',
-                    cnpj: '3820188000139',
+                    cnpj: '38201880001939',
                     billing_address: 'Alameda Santos',
                     billing_email: 'faturamento@codesaga.com.br',
                     token: SecureRandom.base58(20))
@@ -22,7 +22,7 @@ describe 'Admin view registered companies' do
     expect(page).to have_link('CodePlay S.A')
     expect(page).to have_link('CodeSaga S.A')
     expect(page).to have_text('55477618000139')
-    expect(page).to have_text('3820188000139')
+    expect(page).to have_text('38201880001939')
 
   end
 
@@ -43,6 +43,12 @@ describe 'Admin view registered companies' do
     expect(page).to have_content('faturamento@codeplay.com.br')
     expect(page).to have_content(company.token)
     expect(page).to have_link('Voltar', href: admin_companies_path)
+  end
+  
+  it 'no payment method available' do
+    login_admin
+    visit admin_companies_path
 
+    expect(page).to have_content('Nenhuma empresa cadastrada')
   end
 end

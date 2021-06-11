@@ -71,6 +71,7 @@ describe 'User account management' do
 
       expect(page).to have_text('Login efetuado com sucesso')
       expect(page).to have_text('user@codeplay.com.br')
+      expect(page).to have_link('Cadastre Sua Empresa')
       expect(current_path).to eq(root_path)
       expect(page).to_not have_link('Cadastre-se')
       expect(page).to_not have_link('Entrar')

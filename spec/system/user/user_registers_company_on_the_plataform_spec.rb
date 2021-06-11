@@ -18,6 +18,7 @@ describe 'Authenticated user registers your company' do
     expect(page).to have_content('Passagem Morumbi')
     expect(page).to have_content('faturamento@codeplay.com.br')
     expect(page).to have_content('Empresa Cadastrada com Sucesso')
+    expect(page).to_not have_content('Cadastre Sua Empresa')
   end
 
   it 'and attributes cannot be blank' do
@@ -34,11 +35,12 @@ describe 'Authenticated user registers your company' do
     expect(page).to have_content('não pode ficar em branco', count: 4)
   end
 
-  it 'and code must be unique' do
+  it 'cnpj and billing address must be unique' do
     Company.create!(cnpj: '55477618000139',
                     corporate_name: 'CodePlay S.A',
                     billing_address: 'Passagem Morumbi',
-                    billing_email: 'faturamento@codeplay.com.br')
+                    billing_email: 'faturamento@codeplay.com.br',
+                    token: SecureRandom.base58(20))
 
     login_user
     visit new_user_company_path

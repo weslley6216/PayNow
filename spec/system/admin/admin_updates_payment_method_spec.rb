@@ -12,6 +12,7 @@ describe 'Admin updates payment method' do
     fill_in 'Nome', with: 'MestreCard'
     fill_in 'Taxa por Cobrança em (%)', with: 3.5
     fill_in 'Taxa Máxima em (R$)', with: 9.8
+    check 'Status'
     click_on 'Atualizar'
 
     expect(page).to have_content('MestreCard')
@@ -19,6 +20,21 @@ describe 'Admin updates payment method' do
     expect(page).to have_content('9,8')
     expect(page).to have_content('Ativo')
     expect(page).to have_content('Meio de Pagamento atualizado com sucesso')
+  end
+
+  it 'and attributes cannot be blank' do
+
+    login_admin
+    visit admin_payment_methods_path
+    click_on 'Cadastrar Meio de Pagamento'
+
+    select 'Selecione', from: 'Forma de Pagamento'
+    fill_in 'Nome', with: ''
+    fill_in 'Taxa por Cobrança em (%)', with: ''
+    fill_in 'Taxa Máxima em (R$)', with: ''
+    click_on 'Criar'
+
+    expect(page).to have_content('não pode ficar em branco', count: 4)
   end
 
   it 'must be logged in to update a payment method' do
