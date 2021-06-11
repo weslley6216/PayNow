@@ -17,5 +17,8 @@
   <p><%= form.number_field :tax, step: 0.1 %></p>
   <p><%= form.label :max_tax %></p>
   <p><%= form.number_field :max_tax, step: 0.1 %></p>
+  <p><%= form.label :status %></p>
+  <%= @payment_method.status? ? 'Desativar' : 'Ativar' %> 
+  <%= form.check_box :status %>
   <p><%= form.submit 'Atualizar' %></p>
 <% end %>
