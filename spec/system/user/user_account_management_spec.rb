@@ -17,6 +17,7 @@ describe 'User account management' do
       expect(current_path).to eq(root_path)
       expect(page).to_not have_link('Registre-se')
       expect(page).to have_link('Sair')
+      expect(page).to_not have_link('Meios de Pagamentos Disponíveis')
     end
 
     it 'without valid field' do

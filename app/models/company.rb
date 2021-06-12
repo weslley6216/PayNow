@@ -6,7 +6,8 @@ class Company < ApplicationRecord
   validates :cnpj, numericality: { greater_than_or_equal_to: 0 }
   validates_length_of :cnpj, is: 14
 
-
+  has_many :users
+  
   private
 
   def token_generate

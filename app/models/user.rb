@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-
+  belongs_to :company, optional: true
 
   VALID_EMAIL = /\A[a-z0-9+_.-]+@(?!gmail|yahoo|hotmail|paynow)+\p{L}+\.\p{L}+\.br\z/
   validates :email, length: { maximum: 255 },

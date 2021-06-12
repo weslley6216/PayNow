@@ -6,6 +6,8 @@ class User::CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     if @company.save
+      current_user.company_id = @company
+      @company.users << current_user
       redirect_to [:user, @company], notice: 'Empresa Cadastrada com Sucesso'
     else
       render :new

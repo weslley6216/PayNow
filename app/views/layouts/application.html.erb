@@ -11,6 +11,31 @@
   </head>
   <body>
 
+  <ul class="nav justify-content-end">
+
+  <% if admin_signed_in? %>
+
+    <li class="nav-item">
+      Olá, <%= current_admin.email %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_to 'Sair', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
+    </li>
+    
+  <% elsif user_signed_in? %>
+
+    <li class="nav-item">
+     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"> Olá, <%= current_user.email %> </a>
+    </li>
+
+    <li class="nav-item">
+      <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+    </li>
+
+  <% end%>
+  </ul>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <%= link_to 'PayNow', root_path, class: 'navbar-brand' %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,14 +48,6 @@
 
   <% if admin_signed_in? %>
   <ul class="navbar-nav mr-auto">
-    <li class="nav-item">
-      Olá, <%= current_admin.email %>
-    </li>
-    
-    <li class="nav-item">
-     <%= link_to 'Sair', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
-    </li>
-
     <li class="nav-item">
        <%= link_to 'Meios de Pagamentos', admin_payment_methods_path, class: 'nav-link' %>
     </li> 
@@ -45,21 +62,18 @@
     <% elsif user_signed_in? %>
 
     <ul class="navbar-nav mr-auto">
+    
+    <% if current_user.company_id? %>
       <li class="nav-item">
-        Olá, <%= current_user.email %>
+        <%= link_to 'Meios de Pagamentos Disponíveis', user_payment_methods_path, class: 'nav-link' %>
       </li>
 
-      <li class="nav-item">
-        <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-      </li> 
-
+    <% else %>
       <li class="nav-item">
         <%= link_to 'Cadastre Sua Empresa', new_user_company_path, class: 'nav-link' %>
       </li>
 
-      <li class="nav-item">
-        <%= link_to 'Meios de Pagamentos Disponíveis', user_payment_methods_path, class: 'nav-link' %>
-      </li>
+      <% end %>
     </ul>
 
     <% else %>
