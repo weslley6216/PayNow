@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   namespace :user do
+    resources :payment_methods, only: %i[index show]
     resources :companies, only: %i[new create show edit]
   end
 end

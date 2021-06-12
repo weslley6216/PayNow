@@ -1,0 +1,14 @@
+<% if @payment_method.icon.attached? %>
+  <%= image_tag @payment_method.icon, size: '150' %>
+<% end %>
+
+<h1><%= @payment_method.name %></h1>
+
+<dt><%= @payment_method.class.human_attribute_name(:tax) %></dt>
+<dd><%= number_to_percentage @payment_method.tax, precision: 1, format: "%n %" %></dd>
+<dt><%= @payment_method.class.human_attribute_name(:max_tax) %></dt>
+<dd><%= number_to_currency @payment_method.max_tax %></dd>
+<dt><%= @payment_method.class.human_attribute_name(:status) %></dt>
+<dd><%= @payment_method.status ? 'Ativo' : 'Inativo' %></dd>
+
+<%= link_to "Voltar", user_payment_methods_path, class: 'btn btn-primary' %>
