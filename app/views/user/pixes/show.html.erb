@@ -1,0 +1,8 @@
+<h1>Dados Pix</h1>
+
+<dt><%= @pix.class.human_attribute_name(:bank_number) %></dt>
+<dd><%= @pix.bank_number %></dd>
+<dt><%= @pix.class.human_attribute_name(:pix_key) %></dt>
+<dd><%= @pix.pix_key %></dd>
+
+<%= link_to 'Voltar', user_payment_methods_path, class: 'btn btn-primary' %>

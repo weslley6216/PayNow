@@ -2,11 +2,9 @@
 pt-BR:
   activerecord:
     models:
-      bank_slip:
+      credit_card:
         one: 'Cartão de Crédito'
         other: 'Cartões de Crédito'
-    attributes:
-      credit_card:
-        credit_code: 'Código Operadora do Cartão'
-
+  attributes:
+    credit_code: 'Código Operadora do Cartão'
         

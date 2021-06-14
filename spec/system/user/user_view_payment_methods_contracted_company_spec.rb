@@ -52,6 +52,30 @@ describe 'User view the payment methods contracted by the company' do
     expect(page).to have_content('meRT648dV545t24591ZU')
   end
 
+  it 'pix successfully' do
+    pix = PaymentMethod.create!(name: 'Pix Banco Roxinho',
+                                tax: 4, max_tax: 129.90,
+                                status: true, form_of_payment: 3)
+
+    company = Company.create!(corporate_name: 'CodeSaga S.A',
+                              cnpj: '32107618000139',
+                              billing_address: 'Alameda Santos',
+                              billing_email: 'faturamento@codesaga.com.br',
+                              token: SecureRandom.base58(20))
+
+    company_user = User.create!(email: 'user@codeplay.com.br',
+                                password: '123456', company: company)
+
+    Pix.create!(bank_number: '001', pix_key: 'a46Hu7dV545t24591ZU1',
+                payment_method: pix, company: company)
+
+    login_as company_user, scope: :user
+    visit root_path
+    click_on 'Minha Empresa'
+
+    expect(page).to have_content('a46Hu7dV545t24591ZU')
+  end
+
   it 'no payment method contracted' do
 
     login_company_user

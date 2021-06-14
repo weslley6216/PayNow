@@ -1,8 +1,18 @@
 <h1><%= @company.corporate_name %></h1>
 
+<h3>Token de Integração</h3>
+
+<div class="card border-dark mb-3" style="max-width: 18rem;">
+  <%= @company.token %>
+</div>
+  <ul>
+    <%= link_to 'Gerar novo token', '#', class: 'btn btn-primary' %>
+  </ul>
+
+
 <h3>Meios de Pagamentos Contratados</h3>
 
-<% if @company.bank_slips.empty? || @company.credit_cards.empty? %>
+<% if @company.bank_slips.empty? || @company.credit_cards.empty? || @company.pixes.empty? %>
   <%= 'Nenhum método de pagamento contratado' %>
 <% end %>
 
@@ -25,4 +35,16 @@
   <dd><%= PaymentMethod.human_attribute_name("form_of_payment.#{credit_card.payment_method.form_of_payment}") %></dd>
   <dt><%= credit_card.class.human_attribute_name(:credit_code) %></dt>
   <dd><%= credit_card.credit_code %></dd>
+</div>
+<% end %>
+
+<% @company.pixes.each do |pix| %>
+<div class="card border-dark mb-3" style="max-width: 18rem;">
+  <dt><%= PaymentMethod.human_attribute_name(:form_of_payment) %></dt>
+  <dd><%= PaymentMethod.human_attribute_name("form_of_payment.#{pix.payment_method.form_of_payment}") %></dd>
+  <dt><%= pix.class.human_attribute_name(:bank_number) %></dt>
+  <dd><%= pix.bank_number %></dd>
+  <dt><%= pix.class.human_attribute_name(:pix_key) %></dt>
+  <dd><%= pix.pix_key %></dd>
+</div>
 <% end %>

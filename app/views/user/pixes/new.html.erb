@@ -1,0 +1,20 @@
+<% if @pix.errors.present?%>
+  <p>Foram encontrados <%= @pix.errors.count  %> erro(s): </p>
+  <ul>
+    <% @pix.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h1>Dados Pix</h1>
+
+<%= form_with model: [:user, @payment_method, @pix] do |form| %> 
+
+  <p><%= form.label :bank_number %></p>
+  <p><%= form.text_field :bank_number %></p>
+  <p><%= form.label :pix_key %></p>
+  <p><%= form.text_field :pix_key %></p>
+  <p><%= form.submit 'Cadastrar' %></p>
+
+<% end %>

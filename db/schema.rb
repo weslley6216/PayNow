@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_14_125035) do
+ActiveRecord::Schema.define(version: 2021_06_14_153511) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -94,6 +94,17 @@ ActiveRecord::Schema.define(version: 2021_06_14_125035) do
     t.integer "form_of_payment", null: false
   end
 
+  create_table "pixes", force: :cascade do |t|
+    t.string "bank_number"
+    t.string "pix_key"
+    t.integer "payment_method_id", null: false
+    t.integer "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_pixes_on_company_id"
+    t.index ["payment_method_id"], name: "index_pixes_on_payment_method_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -114,5 +125,7 @@ ActiveRecord::Schema.define(version: 2021_06_14_125035) do
   add_foreign_key "bank_slips", "payment_methods"
   add_foreign_key "credit_cards", "companies"
   add_foreign_key "credit_cards", "payment_methods"
+  add_foreign_key "pixes", "companies"
+  add_foreign_key "pixes", "payment_methods"
   add_foreign_key "users", "companies"
 end

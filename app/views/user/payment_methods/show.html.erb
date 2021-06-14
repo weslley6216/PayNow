@@ -18,5 +18,5 @@
 <% elsif @payment_method.credit_card? %>
   <%= link_to 'Contratar Meio de Pagamento', new_user_payment_method_credit_card_path(@payment_method), class: 'btn btn-primary' %>
 <% elsif @payment_method.pix? %>
-  <%= link_to 'Contratar Meio de Pagamento', '#', class: 'btn btn-primary' %>
+  <%= link_to 'Contratar Meio de Pagamento', new_user_payment_method_pix_path(@payment_method), class: 'btn btn-primary' %>
 <% end %>

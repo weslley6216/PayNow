@@ -1,0 +1,10 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      pix:
+        one: 'Pix'
+        other: 'Contas Pix'
+  attributes:
+    bank_number: 'Número do Banco'
+    pix_key: 'Chave Pix'
