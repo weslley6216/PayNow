@@ -6,7 +6,7 @@ class User::CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     if @company.save
-      current_user.company_id = @company
+      current_user.company_id = @company.id
       @company.users << current_user
       redirect_to [:user, @company], notice: 'Empresa Cadastrada com Sucesso'
     else
@@ -15,6 +15,10 @@ class User::CompaniesController < ApplicationController
   end
 
   def show
+    @company = Company.find(params[:id])
+  end
+
+  def my_company
     @company = Company.find(params[:id])
   end
 

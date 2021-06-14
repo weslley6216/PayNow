@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe 'User view payment methods' do
+describe 'User logged in and with a registered company' do
   it 'successfully' do
     PaymentMethod.create!(name: 'Boleto Banco Laranja',
                           tax: 8, max_tax: 15,
                           status: true, form_of_payment: 1)
-    login_user
+    login_company_user
     visit root_path
     click_on 'Meios de Pagamentos Disponíveis'
     
@@ -25,7 +25,7 @@ describe 'User view payment methods' do
                           tax: 12, max_tax: 20,
                           status: false, form_of_payment: 2)
 
-    login_user
+    login_company_user
     visit user_payment_methods_path
 
     expect(page).to have_content('Meios de Pagamentos Disponíveis')
@@ -41,7 +41,7 @@ describe 'User view payment methods' do
                           tax: 8, max_tax: 15,
                           status: true, form_of_payment: 1)
 
-    login_user
+    login_company_user
     visit user_payment_methods_path
     click_on 'Boleto Banco Laranja'
 
@@ -54,7 +54,7 @@ describe 'User view payment methods' do
 
   it 'no payment method available' do
 
-    login_user
+    login_company_user
     visit user_payment_methods_path
 
     expect(page).to have_content('Nenhum meio de pagamento disponível')

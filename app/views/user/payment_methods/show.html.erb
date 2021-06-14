@@ -11,4 +11,12 @@
 <dt><%= @payment_method.class.human_attribute_name(:status) %></dt>
 <dd><%= @payment_method.status ? 'Ativo' : 'Inativo' %></dd>
 
-<%= link_to "Voltar", user_payment_methods_path, class: 'btn btn-primary' %>
+<%= link_to 'Voltar', user_payment_methods_path, class: 'btn btn-primary' %>
+
+<% if @payment_method.bank_slip? %>
+  <%= link_to 'Contratar Meio de Pagamento', new_user_payment_method_bank_slip_path(@payment_method), class: 'btn btn-primary' %>
+<% elsif @payment_method.credit_card? %>
+  <%= link_to 'Contratar Meio de Pagamento', '#', class: 'btn btn-primary' %>
+<% elsif @payment_method.pix? %>
+  <%= link_to 'Contratar Meio de Pagamento', '#', class: 'btn btn-primary' %>
+<% end %>

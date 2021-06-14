@@ -1,0 +1,21 @@
+<h1><%= @company.corporate_name %></h1>
+
+<h3>Meios de Pagamentos Contratados</h3>
+
+<% if @company.bank_slips.empty? %>
+  <%= 'Nenhum método de pagamento contratado' %>
+<% end %>
+
+<% @company.bank_slips.each do |bank_slip| %>
+<div class="card border-dark mb-3" style="max-width: 18rem;">
+  <dt><%= bank_slip.class.human_attribute_name(:form_of_payment) %></dt>
+  <dd><%= PaymentMethod.human_attribute_name("form_of_payment.#{bank_slip.payment_method.form_of_payment}") %></dd>
+  <dt><%= bank_slip.class.human_attribute_name(:bank_number) %></dt>
+  <dd><%= bank_slip.bank_number %></dd>
+  <dt><%= bank_slip.class.human_attribute_name(:agency_number) %></dt>
+  <dd><%= bank_slip.agency_number %></dd>
+  <dt><%= bank_slip.class.human_attribute_name(:account_number ) %></dt>
+  <dd><%= bank_slip.account_number  %></dd>
+</div>
+<% end %>
+

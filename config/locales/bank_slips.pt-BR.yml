@@ -1,0 +1,16 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      bank_slip:
+        one: 'Boleto'
+        other: 'Boletos'
+    attributes:
+      bank_slip:
+        bank_number: 'Código do Banco'
+        agency_number: 'Número da Agência'
+        account_number: 'Número da Conta'
+        form_of_payment: 'Tipo de Pagamento'
+  
+  
+        

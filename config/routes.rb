@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   end
 
   namespace :user do
-    resources :payment_methods, only: %i[index show]
-    resources :companies, only: %i[new create show edit]
+    resources :payment_methods, only: %i[index show] do
+      resources :bank_slips, only: %i[new create show]
+    end
+    resources :companies, only: %i[new create show edit] do
+      get 'my_company', on: :member
+    end
   end
 end

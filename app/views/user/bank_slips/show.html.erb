@@ -1,0 +1,10 @@
+<h1>Dados Boleto Bancário</h1>
+
+<dt><%= @bank_slip.class.human_attribute_name(:bank_number) %></dt>
+<dd><%= @bank_slip.bank_number %></dd>
+<dt><%= @bank_slip.class.human_attribute_name(:agency_number) %></dt>
+<dd><%= @bank_slip.agency_number %></dd>
+<dt><%= @bank_slip.class.human_attribute_name(:account_number ) %></dt>
+<dd><%= @bank_slip.account_number  %></dd>
+
+<%= link_to 'Voltar', user_payment_methods_path, class: 'btn btn-primary' %>

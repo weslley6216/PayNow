@@ -7,7 +7,8 @@ class Company < ApplicationRecord
   validates_length_of :cnpj, is: 14
 
   has_many :users
-  
+  has_many :bank_slips
+
   private
 
   def token_generate
