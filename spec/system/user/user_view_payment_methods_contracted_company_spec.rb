@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'User view payment method contracted by the company ' do
-  it 'sucessfully' do
+describe 'User view the payment methods contracted by the company' do
+  it 'bank slip sucessfully' do
     boleto = PaymentMethod.create!(name: 'Boleto Banco Laranja',
                                    tax: 8, max_tax: 15,
                                    status: true, form_of_payment: 1)
@@ -26,6 +26,30 @@ describe 'User view payment method contracted by the company ' do
     expect(page).to have_content('341')
     expect(page).to have_content('1690')
     expect(page).to have_content('6557827')
+  end
+
+  it 'credit card successfully' do
+    credit_card = PaymentMethod.create!(name: 'Cartão de Crédito MestreCard',
+                                        tax: 12, max_tax: 20,
+                                        status: true, form_of_payment: 2)
+
+    company = Company.create!(corporate_name: 'CodeSaga S.A',
+                              cnpj: '32107618000139',
+                              billing_address: 'Alameda Santos',
+                              billing_email: 'faturamento@codesaga.com.br',
+                              token: SecureRandom.base58(20))
+
+    company_user = User.create!(email: 'user@codeplay.com.br',
+                                password: '123456', company: company)
+
+    CreditCard.create!(credit_code: 'meRT648dV545t24591ZU',
+                       payment_method: credit_card, company: company)
+
+    login_as company_user, scope: :user
+    visit root_path
+    click_on 'Minha Empresa'
+
+    expect(page).to have_content('meRT648dV545t24591ZU')
   end
 
   it 'no payment method contracted' do

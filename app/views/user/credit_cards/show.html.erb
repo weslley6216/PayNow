@@ -1,0 +1,6 @@
+<h1>Dados Cartão de Crédito</h1>
+
+<dt><%= @credit_card.class.human_attribute_name(:credit_code) %></dt>
+<dd><%= @credit_card.credit_code %></dd>
+
+<%= link_to 'Voltar', user_payment_methods_path, class: 'btn btn-primary' %>

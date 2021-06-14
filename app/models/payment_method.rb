@@ -1,6 +1,7 @@
 class PaymentMethod < ApplicationRecord
   after_create_commit :attach_icon
   has_many :bank_slips
+  has_many :credit_cards
 
   has_one_attached :icon
 

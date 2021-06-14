@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_13_204302) do
+ActiveRecord::Schema.define(version: 2021_06_14_125035) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -74,6 +74,16 @@ ActiveRecord::Schema.define(version: 2021_06_13_204302) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "credit_cards", force: :cascade do |t|
+    t.string "credit_code"
+    t.integer "payment_method_id", null: false
+    t.integer "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_credit_cards_on_company_id"
+    t.index ["payment_method_id"], name: "index_credit_cards_on_payment_method_id"
+  end
+
   create_table "payment_methods", force: :cascade do |t|
     t.string "name"
     t.decimal "tax"
@@ -102,5 +112,7 @@ ActiveRecord::Schema.define(version: 2021_06_13_204302) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bank_slips", "companies"
   add_foreign_key "bank_slips", "payment_methods"
+  add_foreign_key "credit_cards", "companies"
+  add_foreign_key "credit_cards", "payment_methods"
   add_foreign_key "users", "companies"
 end

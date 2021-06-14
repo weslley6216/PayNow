@@ -1,0 +1,18 @@
+<% if @credit_card.errors.present?%>
+  <p>Foram encontrados <%= @credit_card.errors.count  %> erro(s): </p>
+  <ul>
+    <% @credit_card.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h1>Dados Cartão de Crédito</h1>
+
+<%= form_with model: [:user, @payment_method, @credit_card] do |form| %> 
+
+  <p><%= form.label :credit_code %></p>
+  <p><%= form.text_field :credit_code %></p>
+  <p><%= form.submit 'Cadastrar' %></p>
+
+<% end %>
