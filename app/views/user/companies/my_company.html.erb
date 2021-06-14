@@ -6,7 +6,7 @@
   <%= @company.token %>
 </div>
   <ul>
-    <%= link_to 'Gerar novo token', '#', class: 'btn btn-primary' %>
+    <%= link_to 'Gerar novo token', regenerate_token_user_company_path(@company), method: :put, class: 'btn btn-primary' %>
   </ul>
 
 

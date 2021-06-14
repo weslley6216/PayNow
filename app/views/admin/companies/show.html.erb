@@ -12,3 +12,4 @@
 <%= link_to 'Voltar', admin_companies_path, class: 'btn btn-primary' %>
 <%= link_to 'Editar', edit_admin_company_path(@company), class: 'btn btn-primary' %>
 <%= link_to 'Apagar', admin_company_path(@company), method: :delete, data: { confirm: 'Are you sure? '}, class: 'btn btn-primary'%>
+<%= link_to 'Gerar novo token', regenerate_token_admin_company_path(@company), method: :put, class: 'btn btn-primary' %>

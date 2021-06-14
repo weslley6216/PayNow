@@ -28,6 +28,13 @@ class Admin::CompaniesController < ApplicationController
     redirect_to admin_companies_path, notice: 'Empresa removida com sucesso'
   end
 
+  def regenerate_token
+    @company = Company.find(params[:id])
+    @company.token = SecureRandom.base58(20)
+    @company.save
+    render :show
+  end
+
   private
 
   def company_params

@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :payment_methods
-    resources :companies
+    resources :companies do
+      put 'regenerate_token', on: :member
+    end
   end
 
   namespace :user do
@@ -17,6 +19,7 @@ Rails.application.routes.draw do
     end
     resources :companies, only: %i[new create show edit] do
       get 'my_company', on: :member
+      put 'regenerate_token', on: :member
     end
   end
 end

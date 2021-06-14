@@ -22,6 +22,13 @@ class User::CompaniesController < ApplicationController
     @company = Company.find(params[:id])
   end
 
+  def regenerate_token
+    @company = Company.find(params[:id])
+    @company.token = SecureRandom.base58(20)
+    @company.save
+    render :my_company
+  end
+
   private
 
   def company_params
