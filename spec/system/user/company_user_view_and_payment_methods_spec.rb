@@ -15,7 +15,7 @@ describe 'User view payment method contracted by the company ' do
     company_user = User.create!(email: 'user@codeplay.com.br',
                                 password: '123456', company: company)
 
-    BankSlip.create!(bank_number: '341', agency_number: '1690', account_number: '655782-7',
+    BankSlip.create!(bank_number: '341', agency_number: '1690', account_number: '6557827',
                      payment_method: boleto, company: company)
 
     login_as company_user, scope: :user
@@ -25,7 +25,7 @@ describe 'User view payment method contracted by the company ' do
     expect(page).to have_content('Meios de Pagamentos Contratados')
     expect(page).to have_content('341')
     expect(page).to have_content('1690')
-    expect(page).to have_content('655782-7')
+    expect(page).to have_content('6557827')
   end
 
   it 'no payment method contracted' do

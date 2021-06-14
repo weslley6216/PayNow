@@ -15,7 +15,7 @@ describe 'Logged in user contracts a form of payment of the bank slip type' do
     company_user = User.create!(email: 'user@codeplay.com.br',
                                 password: '123456', company: company)
 
-    BankSlip.create!(bank_number: '341', agency_number: '1690', account_number: '655782-7',
+    BankSlip.create!(bank_number: '341', agency_number: '1690', account_number: '6557827',
                      payment_method: boleto, company: company)
 
     login_as company_user, scope: :user
@@ -27,13 +27,13 @@ describe 'Logged in user contracts a form of payment of the bank slip type' do
 
     fill_in 'Código do Banco', with: '341'
     fill_in 'Número da Agência', with: '1690'
-    fill_in 'Número da Conta', with: '787896-3'
+    fill_in 'Número da Conta', with: '7878963'
     click_on 'Cadastrar'
 
     expect(page).to have_content('Dados Boleto Bancário')
     expect(page).to have_content('341')
     expect(page).to have_content('1690')
-    expect(page).to have_content('787896-3')
+    expect(page).to have_content('7878963')
     expect(page).to have_content('Dados Cadastrados com Sucesso')
     expect(page).to have_link('Voltar', href: user_payment_methods_path)
   end
@@ -52,7 +52,7 @@ describe 'Logged in user contracts a form of payment of the bank slip type' do
     company_user = User.create!(email: 'user@codeplay.com.br',
                                 password: '123456', company: company)
 
-    BankSlip.create!(bank_number: '341', agency_number: '1690', account_number: '655782-7',
+    BankSlip.create!(bank_number: '341', agency_number: '1690', account_number: '6557827',
                      payment_method: boleto, company: company)
 
     login_as company_user, scope: :user
