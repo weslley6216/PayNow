@@ -9,10 +9,12 @@ describe 'user of a company view the created products' do
                               token: SecureRandom.base58(20))
 
     Product.create!(name: 'Ruby', price: 450, bank_slip_discount: 4,
-                    credit_card_discount: 5, pix_discount: 6, company: company)
+                    credit_card_discount: 5, pix_discount: 6,
+                    token: SecureRandom.base58(20), company: company)
 
     Product.create!(name: 'Ruby on Rails', price: 45, bank_slip_discount: 7,
-                    credit_card_discount: 8, pix_discount: 9, company: company)
+                    credit_card_discount: 8, pix_discount: 9,
+                    token: SecureRandom.base58(20), company: company)
 
     company_user = User.create!(email: 'user@codeplay.com.br',
                                 password: '123456', company: company)
@@ -34,10 +36,12 @@ describe 'user of a company view the created products' do
                               token: SecureRandom.base58(20))
 
     Product.create!(name: 'Ruby', price: 45, bank_slip_discount: 4,
-                    credit_card_discount: 5, pix_discount: 6, company: company)
+                    credit_card_discount: 5, pix_discount: 6,
+                    token: SecureRandom.base58(20), company: company)
 
     Product.create!(name: 'Ruby on Rails', price: 450, bank_slip_discount: 7,
-                    credit_card_discount: 8, pix_discount: 9, company: company)
+                    credit_card_discount: 8, pix_discount: 9,
+                    token: SecureRandom.base58(20), company: company)
 
     company_user = User.create!(email: 'user@codeplay.com.br',
                                 password: '123456', company: company)
@@ -51,6 +55,7 @@ describe 'user of a company view the created products' do
     expect(page).to have_content('7%')
     expect(page).to have_content('8%')
     expect(page).to have_content('9%')
+    expect(page).to have_content(Product.last.token)
     expect(page).to have_link('Voltar', href: user_company_products_path(company))
   end
 

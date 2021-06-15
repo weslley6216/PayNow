@@ -9,7 +9,8 @@ describe 'user deletes a products' do
                               token: SecureRandom.base58(20))
 
     Product.create!(name: 'Ruby', price: 450, bank_slip_discount: 4,
-                    credit_card_discount: 5, pix_discount: 6, company: company)
+                    credit_card_discount: 5, pix_discount: 6,
+                    token: SecureRandom.base58(20), company: company)
 
     login_company_user
     visit user_company_product_path(company, Product.last)
@@ -17,6 +18,5 @@ describe 'user deletes a products' do
     expect { click_link 'Apagar' }.to change { Product.count }.by(-1)
     expect(page).to have_content('Produto removido com sucesso')
     expect(current_path).to eq(user_company_products_path(company))
-
   end
 end

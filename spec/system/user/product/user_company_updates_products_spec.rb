@@ -9,7 +9,8 @@ describe 'company user updates a product' do
                               token: SecureRandom.base58(20))
 
     Product.create!(name: 'Ruby', price: 450, bank_slip_discount: 4,
-                    credit_card_discount: 5, pix_discount: 6, company: company)
+                    credit_card_discount: 5, pix_discount: 6,
+                    token: SecureRandom.base58(20), company: company)
 
     login_company_user
     visit user_company_product_path(company, Product.last)
@@ -29,6 +30,7 @@ describe 'company user updates a product' do
     expect(page).to have_content('7%')
     expect(page).to have_content('8%')
     expect(page).to have_content('9%')
+    expect(page).to have_content(Product.last.token)
   end
 
   it 'must be looged in to update product' do
@@ -39,7 +41,8 @@ describe 'company user updates a product' do
                               token: SecureRandom.base58(20))
 
     Product.create!(name: 'Ruby', price: 450, bank_slip_discount: 4,
-                    credit_card_discount: 5, pix_discount: 6, company: company)
+                    credit_card_discount: 5, pix_discount: 6,
+                    token: SecureRandom.base58(20), company: company)
 
     visit user_company_products_path(company)
     expect(current_path).to eq(new_user_session_path)
