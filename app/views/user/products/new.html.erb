@@ -1,0 +1,26 @@
+<% if @product.errors.present?%>
+  <p>Foram encontrados <%= @product.errors.count  %> erro(s): </p>
+  <ul>
+    <% @product.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+
+<%= form_with model: [:user, @company, @product] do |form| %> 
+
+  <p><%= form.label :name %></p>
+  <p><%= form.text_field :name %></p>
+  <p><%= form.label :price %></p>
+  <p><%= form.text_field :price %></p>
+  <p><%= form.label :bank_slip_discount %></p>
+  <p><%= form.text_field :bank_slip_discount %></p>
+  <p><%= form.label :credit_card_discount %></p>
+  <p><%= form.text_field :credit_card_discount %></p>
+  <p><%= form.label :pix_discount %></p>
+  <p><%= form.text_field :pix_discount %></p>
+  <p><%= form.submit 'Cadastrar' %></p>
+
+<% end %>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User of a company view the created products' do
+describe 'user of a company view the created products' do
   it 'succesfully' do
     company = Company.create!(corporate_name: 'CodePlay S.A',
                               cnpj: '55477618000139',

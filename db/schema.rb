@@ -108,9 +108,9 @@ ActiveRecord::Schema.define(version: 2021_06_14_232728) do
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.decimal "price"
-    t.decimal "bank_slip_discount"
-    t.decimal "credit_card_discount"
-    t.decimal "pix_discount"
+    t.decimal "bank_slip_discount", default: "0.0"
+    t.decimal "credit_card_discount", default: "0.0"
+    t.decimal "pix_discount", default: "0.0"
     t.integer "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
