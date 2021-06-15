@@ -1,14 +1,4 @@
-<% if @product.errors.present?%>
-  <p>Foram encontrados <%= @product.errors.count  %> erro(s): </p>
-  <ul>
-    <% @product.errors.full_messages.each do |error| %>
-      <li><%= error %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<h1>Criar Novo Produto</h1>
-
+<h1>Editar Produto</h1>
 
 <%= form_with model: [:user, @company, @product] do |form| %> 
 
@@ -22,6 +12,6 @@
   <p><%= form.text_field :credit_card_discount %></p>
   <p><%= form.label :pix_discount %></p>
   <p><%= form.text_field :pix_discount %></p>
-  <p><%= form.submit 'Cadastrar' %></p>
+  <p><%= form.submit 'Atualizar' %></p>
 
 <% end %>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'user of a company view the created products' do
+describe 'company user registers a product' do
   it 'succesfully' do
     company = Company.create!(corporate_name: 'CodePlay S.A',
                               cnpj: '55477618000139',
@@ -20,6 +20,7 @@ describe 'user of a company view the created products' do
     click_on 'Cadastrar'
 
     expect(current_path).to eq(user_company_product_path(company, Product.last))
+    expect(page).to have_content('Produto criado com sucesso')
     expect(page).to have_content('Ruby on Rails')
     expect(page).to have_content('R$ 450,00')
     expect(page).to have_content('4%')
