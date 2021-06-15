@@ -1,0 +1,24 @@
+<h1>Meus Produtos</h1>
+
+<% if @company.products.empty? %>
+  <%= 'Nenhum produto disponível' %>
+<% end %>
+
+<div class="container-fluid">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><%= 'Nome' %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+<tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= link_to product.name, user_company_product_path(@company, product) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

@@ -1,0 +1,15 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      product:
+        one: 'Produto'
+        other: 'Produtos'
+  attributes:
+    name: 'Nome'
+    price: 'Preço'
+    bank_slip_discount: 'Desconto Boleto'
+    credit_card_discount: 'Desconto Cartão de Crédito'
+    pix_discount: 'Desconto Pix'
+    
+        

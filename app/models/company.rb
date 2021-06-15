@@ -10,6 +10,7 @@ class Company < ApplicationRecord
   has_many :bank_slips
   has_many :credit_cards
   has_many :pixes
+  has_many :products
 
   private
 

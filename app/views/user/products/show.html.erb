@@ -1,0 +1,12 @@
+<h1><%= @product.name %></h1>
+
+<dt><%= @product.class.human_attribute_name(:price) %></dt>
+<dd><%= number_to_currency @product.price %></dd>
+<dt><%= @product.class.human_attribute_name(:bank_slip_discount) %></dt>
+<dd><%= number_to_percentage @product.bank_slip_discount, precision: 0, format: "%n%" %></dd>
+<dt><%= @product.class.human_attribute_name(:credit_card_discount) %></dt>
+<dd><%= number_to_percentage @product.credit_card_discount, precision: 0, format: "%n%" %></dd>
+<dt><%= @product.class.human_attribute_name(:pix_discount) %></dt>
+<dd><%= number_to_percentage @product.pix_discount, precision: 0, format: "%n%" %></dd>
+
+<%= link_to 'Voltar', user_company_products_path, class: 'btn btn-primary' %>

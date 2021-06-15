@@ -73,6 +73,10 @@
         <%= link_to 'Meios de Pagamentos Disponíveis', user_payment_methods_path, class: 'nav-link' %>
       </li>
 
+      <li class="nav-item">
+        <%= link_to 'Meus Produtos', user_company_products_path(current_user.company), class: 'nav-link' %>
+      </li>
+
     <% else %>
       <li class="nav-item">
         <%= link_to 'Cadastre Sua Empresa', new_user_company_path, class: 'nav-link' %>
