@@ -23,4 +23,10 @@ Rails.application.routes.draw do
       resources :products
     end
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :final_clients, only: %i[create]
+    end
+  end
 end

@@ -11,6 +11,8 @@ class Company < ApplicationRecord
   has_many :credit_cards
   has_many :pixes
   has_many :products
+  has_many :final_client_companies
+  has_many :final_clients, through: :final_client_companies
 
   private
 
