@@ -11,9 +11,10 @@ describe 'User generates a new token for company' do
     current_token = company.token
 
     login_company_user
-    visit my_company_user_company_path(company)
+    visit user_company_path(company)
     click_on 'Gerar novo token'
 
     expect(current_token).to_not eq(Company.last.token)
+    expect(page).to have_content('Novo token gerado com sucesso')
   end
 end

@@ -18,7 +18,6 @@ Rails.application.routes.draw do
       resources :pixes, only: %i[new create show]
     end
     resources :companies, only: %i[new create show edit] do
-      get 'my_company', on: :member
       put 'regenerate_token', on: :member
       resources :products
     end

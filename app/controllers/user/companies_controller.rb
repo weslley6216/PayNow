@@ -18,15 +18,11 @@ class User::CompaniesController < ApplicationController
     @company = Company.find(params[:id])
   end
 
-  def my_company
-    @company = Company.find(params[:id])
-  end
-
   def regenerate_token
     @company = Company.find(params[:id])
     @company.token = SecureRandom.base58(20)
     @company.save
-    render :my_company
+    redirect_to [:user, @company], notice: 'Novo token gerado com sucesso'
   end
 
   private
