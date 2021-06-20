@@ -1,0 +1,16 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      charge:
+        one: 'Cobrança'
+        other: 'Cobranças'
+  attributes:
+    charge:
+      original_value: 'Valor Original'
+      discounted_amount: 'Valor com desconto'
+    charge/status:
+      pending: 'Pendente'
+      approved: 'Aprovado'
+      
+        

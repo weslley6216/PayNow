@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_17_025556) do
+ActiveRecord::Schema.define(version: 2021_06_18_050732) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -62,6 +62,36 @@ ActiveRecord::Schema.define(version: 2021_06_17_025556) do
     t.integer "company_id", null: false
     t.index ["company_id"], name: "index_bank_slips_on_company_id"
     t.index ["payment_method_id"], name: "index_bank_slips_on_payment_method_id"
+  end
+
+  create_table "charges", force: :cascade do |t|
+    t.decimal "original_value"
+    t.decimal "discounted_amount"
+    t.string "token"
+    t.integer "status", default: 1
+    t.string "card_number"
+    t.string "card_holder_name"
+    t.string "cvv"
+    t.string "address"
+    t.string "district"
+    t.string "zip_code"
+    t.string "city"
+    t.integer "payment_method_id", null: false
+    t.integer "bank_slip_id"
+    t.integer "credit_card_id"
+    t.integer "pix_id"
+    t.integer "company_id", null: false
+    t.integer "final_client_id", null: false
+    t.integer "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bank_slip_id"], name: "index_charges_on_bank_slip_id"
+    t.index ["company_id"], name: "index_charges_on_company_id"
+    t.index ["credit_card_id"], name: "index_charges_on_credit_card_id"
+    t.index ["final_client_id"], name: "index_charges_on_final_client_id"
+    t.index ["payment_method_id"], name: "index_charges_on_payment_method_id"
+    t.index ["pix_id"], name: "index_charges_on_pix_id"
+    t.index ["product_id"], name: "index_charges_on_product_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -153,6 +183,13 @@ ActiveRecord::Schema.define(version: 2021_06_17_025556) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bank_slips", "companies"
   add_foreign_key "bank_slips", "payment_methods"
+  add_foreign_key "charges", "bank_slips"
+  add_foreign_key "charges", "companies"
+  add_foreign_key "charges", "credit_cards"
+  add_foreign_key "charges", "final_clients"
+  add_foreign_key "charges", "payment_methods"
+  add_foreign_key "charges", "pixes"
+  add_foreign_key "charges", "products"
   add_foreign_key "credit_cards", "companies"
   add_foreign_key "credit_cards", "payment_methods"
   add_foreign_key "final_client_companies", "companies"

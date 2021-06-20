@@ -56,8 +56,6 @@ describe 'POST /api/V1/final_clients' do
     expect(response.content_type).to include('application/json')
     expect(response).to have_http_status(422)
     expect(response.body).to include('já está em uso')
-   
-
   end
 
   it 'and attributes cannot blank' do

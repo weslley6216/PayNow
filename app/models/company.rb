@@ -13,6 +13,7 @@ class Company < ApplicationRecord
   has_many :products
   has_many :final_client_companies
   has_many :final_clients, through: :final_client_companies
+  has_many :charges
 
   private
 
