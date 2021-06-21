@@ -41,7 +41,7 @@ class User::ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-    redirect_to user_company_products_path(@company), notice: 'Produto removido com sucesso'
+    redirect_to user_company_products_path(@company), alert: 'Produto removido com sucesso'
   end
 
 

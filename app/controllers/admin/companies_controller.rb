@@ -32,7 +32,7 @@ class Admin::CompaniesController < ApplicationController
     @company = Company.find(params[:id])
     @company.token = SecureRandom.base58(20)
     @company.save
-    render :show
+    redirect_to [:admin, @company], notice: 'Token atualizado com sucesso'
   end
 
   private

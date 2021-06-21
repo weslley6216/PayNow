@@ -1,0 +1,15 @@
+---
+pt-BR:
+  activerecord:
+    attributes:
+      payment_method:
+        form_of_payments:
+          bank_slip: 'Boleto'
+          credit_card: 'Cartão de Crédito'
+          pix: 'Pix'
+        form_of_payment: 'Forma de Pagamento'
+        tax: 'Taxa por Cobrança em (%)'
+        max_tax: 'Taxa Máxima em (R$)'
+   
+      
+  

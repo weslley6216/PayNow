@@ -1,0 +1,19 @@
+<div class="card border-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header"><%= @charge.model_name.human %></div>
+     <div class="card-body text-dark">
+      <dt><%= @charge.class.human_attribute_name(:product) %></dt>
+      <dd><%= @charge.product.name %></dd>
+      <dt><%= @charge.class.human_attribute_name(:original_value) %></dt>
+      <dd><%= number_to_currency @charge.original_value %></dd>
+      <dt><%= @charge.class.human_attribute_name(:discounted_amount ) %></dt>
+      <dd><%= number_to_currency @charge.discounted_amount  %></dd>
+      <dt><%= @charge.class.human_attribute_name(:payment_method) %></dt>
+      <dd><%= PaymentMethod.human_enum_name(:form_of_payment, @charge.payment_method.form_of_payment) %></dd>
+      <dt><%= @charge.final_client.class.human_attribute_name(:name) %></dt>
+      <dd><%= @charge.final_client.name %></dd>
+      <dt><%= @charge.final_client.class.human_attribute_name(:cpf) %></dt>
+      <dd><%= @charge.final_client.cpf %></dd>
+      <dt><%= @charge.class.human_attribute_name(:created_at) %></dt>
+      <dd><%= I18n.l(@charge.created_at, format: :short) %></dd>
+  </div>
+</div>

@@ -11,7 +11,7 @@ class Charge < ApplicationRecord
 
   validates :original_value, :discounted_amount, presence: true
 
-  enum status: { Pendente: 1, Aprovado: 2 }
+  enum status: { pending: 1, approved: 2 }
 
   def token_generate
     self.token = SecureRandom.base58(20)

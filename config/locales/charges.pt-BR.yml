@@ -2,15 +2,16 @@
 pt-BR:
   activerecord:
     models:
-      charge:
+      charge: 
         one: 'Cobrança'
         other: 'Cobranças'
-  attributes:
-    charge:
-      original_value: 'Valor Original'
-      discounted_amount: 'Valor com desconto'
-    charge/status:
-      pending: 'Pendente'
-      approved: 'Aprovado'
-      
-        
+    attributes:
+      charge:
+        product: 'Produto'
+        payment_method: 'Meio de pagamento'
+        original_value: 'Valor Original'
+        discounted_amount: 'Valor com Desconto'
+        created_at: 'Data e Hora da Compra'
+        statuses:
+          pending: 'Pendente'
+          approved: 'Aprovado'

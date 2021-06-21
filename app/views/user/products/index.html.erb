@@ -1,8 +1,8 @@
 <h1>Meus Produtos</h1>
 
 <% if @company.products.empty? %>
-  <%= 'Nenhum produto disponível' %>
-<% end %>
+  <p><%= 'Nenhum produto disponível' %></p>
+<% else %>
 
 <div class="container-fluid">
 <table class="table table-hover">
@@ -23,4 +23,6 @@
 </table>
 </div>
 
-<%= link_to 'Criar Produto', new_user_company_product_path(@company), class: 'btn btn-primary' %>
+<% end %>
+
+<%= link_to 'Cadastrar Produto', new_user_company_product_path(@company), class: 'btn btn-primary' %>

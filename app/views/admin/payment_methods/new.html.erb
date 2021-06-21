@@ -13,7 +13,7 @@
 <%= form_with model: [:admin, @payment_method] do |form| %> 
 
   <p><%= form.label :form_of_payment %></p>
-  <p><%= form.collection_select :form_of_payment, human_attribute_form_of_payments, :first, :last, { include_blank: 'Selecione' } %></p>
+  <p><%= form.select(:form_of_payment, @payment_methods_options, { include_blank: 'Selecione' } )%></p>
   <p><%= form.label :name %></p>
   <p><%= form.text_field :name %></p>
   <p><%= form.label :tax %></p>

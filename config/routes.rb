@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :payment_methods
     resources :companies do
+      resources :charges, only: %i[index show]
       put 'regenerate_token', on: :member
     end
   end

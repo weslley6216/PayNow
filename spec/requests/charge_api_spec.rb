@@ -47,8 +47,8 @@ describe 'Charge API' do
       expect(response.content_type).to include('application/json')
       expect(parsed_body['original_value']).to eq('450.0')
       expect(parsed_body['discounted_amount']).to eq('432.0')
-      expect(parsed_body['token']).to eq(Charge.last.token)
-      expect(parsed_body['status']).to eq('Pendente')
+      expect(parsed_body['token']).to eq(Charge.last.token.to_s)
+      expect(parsed_body['status']).to eq(Charge.last.status.to_s)
       expect(parsed_body['address']).to eq('Colméias, 83')
       expect(parsed_body['district']).to eq('Alvarenga')
       expect(parsed_body['zip_code']).to eq('09856-280')
@@ -97,8 +97,8 @@ describe 'Charge API' do
       expect(response.content_type).to include('application/json')
       expect(parsed_body['original_value']).to eq('450.0')
       expect(parsed_body['discounted_amount']).to eq('427.5')
-      expect(parsed_body['token']).to eq(Charge.last.token)
-      expect(parsed_body['status']).to eq('Pendente')
+      expect(parsed_body['token']).to eq(Charge.last.token.to_s)
+      expect(parsed_body['status']).to eq(Charge.last.status.to_s)
       expect(parsed_body['card_number']).to eq('1234567887654321')
       expect(parsed_body['card_holder_name']).to eq('João Silva')
       expect(parsed_body['cvv']).to eq('123')
@@ -144,8 +144,8 @@ describe 'Charge API' do
       expect(response.content_type).to include('application/json')
       expect(parsed_body['original_value']).to eq('450.0')
       expect(parsed_body['discounted_amount']).to eq('423.0')
-      expect(parsed_body['token']).to eq(Charge.last.token)
-      expect(parsed_body['status']).to eq('Pendente')
+      expect(parsed_body['token']).to eq(Charge.last.token.to_s)
+      expect(parsed_body['status']).to eq(Charge.last.status.to_s)
     end
 
     it 'should not create a charge with invalid params' do
