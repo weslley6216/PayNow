@@ -51,4 +51,17 @@ describe 'Admin view registered companies' do
 
     expect(page).to have_content('Nenhuma empresa cadastrada')
   end
+
+  it 'must be logged in to view a registered company' do
+    company = Company.create!(corporate_name: 'CodePlay S.A',
+                              cnpj: '55477618000139',
+                              billing_address: 'Passagem Morumbi',
+                              billing_email: 'faturamento@codeplay.com.br',
+                              token: SecureRandom.base58(20))
+                                   
+    visit admin_company_path(company)
+
+    expect(current_path).to eq(new_admin_session_path)
+
+  end
 end

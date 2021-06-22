@@ -55,5 +55,6 @@ describe 'Admin updates registered companies on the plataform' do
     visit admin_company_path(company)
 
     expect(current_path).to eq(new_admin_session_path)
+    expect(page).to have_content('Para continuar, efetue login ou registre-se')
   end
 end

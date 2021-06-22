@@ -59,4 +59,11 @@ describe 'User logged in and with a registered company' do
 
     expect(page).to have_content('Nenhum meio de pagamento disponível')
   end
+
+  it 'cannot see payment methods if you are not logged in' do
+    visit user_payment_methods_path
+
+    expect(current_path).to eq(new_user_session_path)
+    expect(page).to have_content('Para continuar, efetue login ou registre-se')
+  end
 end

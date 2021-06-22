@@ -90,4 +90,16 @@ describe 'Logged in user contracts a form of payment of the bank slip type' do
 
     expect(page).to have_content('já está em uso')
   end
+
+  it 'must be logged in to hire a bank slip payment method' do
+    bank_slip = PaymentMethod.create!(name: 'Boleto Banco Laranja',
+                                      tax: 8, max_tax: 15,
+                                      status: true, form_of_payment: 1)
+
+    visit new_user_payment_method_bank_slip_path(bank_slip)
+
+    expect(current_path).to eq(new_user_session_path)
+    expect(page).to have_content('Para continuar, efetue login ou registre-se')
+  end
 end
+

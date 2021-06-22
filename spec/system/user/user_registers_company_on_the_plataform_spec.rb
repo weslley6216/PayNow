@@ -52,4 +52,12 @@ describe 'Authenticated user registers your company' do
     expect(page).to have_content('já está em uso', count: 2)
 
   end
+
+  it 'must be logged in to register a company on the platform' do
+    visit new_user_company_path
+
+    expect(current_path).to eq(new_user_session_path)
+    expect(page).to have_content('Para continuar, efetue login ou registre-se')
+  end
 end
+

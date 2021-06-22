@@ -9,8 +9,7 @@ class Charge < ApplicationRecord
   belongs_to :final_client
   belongs_to :product
 
-  validates :original_value, :discounted_amount, presence: true
-
+  validates :original_value, :discounted_amount, :status, presence: true
   enum status: { pending: 1, approved: 2 }
 
   def token_generate

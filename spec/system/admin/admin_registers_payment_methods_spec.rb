@@ -59,5 +59,6 @@ describe 'Admin registers payment methods' do
     visit new_admin_payment_method_path
 
     expect(current_path).to eq(new_admin_session_path)
+    expect(page).to have_content('Para continuar, efetue login ou registre-se')
   end
 end

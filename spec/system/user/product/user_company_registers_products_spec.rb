@@ -10,7 +10,7 @@ describe 'company user registers a product' do
 
     login_company_user
     visit user_company_products_path(company)
-    click_on 'Criar Produto'
+    click_on 'Cadastrar Produto'
 
     fill_in 'Nome', with: 'Ruby on Rails'
     fill_in 'Preço', with: 450
@@ -37,7 +37,7 @@ describe 'company user registers a product' do
                               token: SecureRandom.base58(20))
     login_company_user
     visit user_company_products_path(company)
-    click_on 'Criar Produto'
+    click_on 'Cadastrar Produto'
 
     fill_in 'Nome', with: ''
     fill_in 'Preço', with: ''
@@ -62,7 +62,7 @@ describe 'company user registers a product' do
 
     login_company_user
     visit user_company_products_path(company)
-    click_on 'Criar Produto'
+    click_on 'Cadastrar Produto'
 
     fill_in 'Nome', with: 'Ruby'
     click_on 'Cadastrar'

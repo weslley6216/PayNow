@@ -86,4 +86,15 @@ describe 'Logged in user contracts a form of payment of the pix type' do
 
     expect(page).to have_content('já está em uso')
   end
+
+  it 'must be logged in to hire a pix payment method' do
+    pix = PaymentMethod.create!(name: 'Pix Banco Roxinho',
+                                tax: 4, max_tax: 129.90,
+                                status: true, form_of_payment: 3)
+
+    visit new_user_payment_method_pix_path(pix)
+
+    expect(current_path).to eq(new_user_session_path)
+    expect(page).to have_content('Para continuar, efetue login ou registre-se')
+  end
 end

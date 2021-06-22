@@ -45,5 +45,6 @@ describe 'Admin updates payment method' do
     visit admin_payment_method_path(boleto)
 
     expect(current_path).to eq(new_admin_session_path)
+    expect(page).to have_content('Para continuar, efetue login ou registre-se')
   end
 end

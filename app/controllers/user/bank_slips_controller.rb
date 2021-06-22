@@ -1,4 +1,5 @@
 class User::BankSlipsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_payment_method
 
   def new

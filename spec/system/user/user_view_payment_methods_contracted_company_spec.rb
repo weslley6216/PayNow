@@ -84,4 +84,17 @@ describe 'User view the payment methods contracted by the company' do
 
     expect(page).to have_content('Nenhum método de pagamento contratado')
   end
+
+  it 'cannot see contracted payment methods if you are not logged in' do
+    company = Company.create!(corporate_name: 'CodeSaga S.A',
+                              cnpj: '32107618000139',
+                              billing_address: 'Alameda Santos',
+                              billing_email: 'faturamento@codesaga.com.br',
+                              token: SecureRandom.base58(20))
+
+    visit user_company_path(company)
+
+    expect(current_path).to eq(new_user_session_path)
+    expect(page).to have_content('Para continuar, efetue login ou registre-se')
+  end
 end

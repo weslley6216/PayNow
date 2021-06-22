@@ -50,4 +50,15 @@ describe 'and view the payment methods' do
 
     expect(page).to have_content('Nenhum meio de pagamento disponível')
   end
+
+  it 'must be logged in to view a payment method' do
+    boleto = PaymentMethod.create!(name: 'Boleto Banco Roxinho',
+                                   tax: 8, max_tax: 15,
+                                   status: true, form_of_payment: 1)
+
+    visit admin_payment_method_path(boleto)
+
+    expect(current_path).to eq(new_admin_session_path)
+    expect(page).to have_content('Para continuar, efetue login ou registre-se')
+  end
 end

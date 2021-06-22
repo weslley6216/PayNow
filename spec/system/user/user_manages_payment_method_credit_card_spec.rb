@@ -82,4 +82,15 @@ describe 'Logged in user contracts a form of payment of the credit card type' do
 
     expect(page).to have_content('já está em uso')
   end
+
+  it 'must be logged in to hire a credit card payment method' do
+    credit_card = PaymentMethod.create!(name: 'Cartão de Crédito MestreCard',
+                                        tax: 12, max_tax: 20,
+                                        status: true, form_of_payment: 2)
+
+    visit new_user_payment_method_credit_card_path(credit_card)
+
+    expect(current_path).to eq(new_user_session_path)
+    expect(page).to have_content('Para continuar, efetue login ou registre-se')
+  end
 end
