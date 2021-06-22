@@ -13,7 +13,7 @@ describe 'company user updates a product' do
                     token: SecureRandom.base58(20), company: company)
 
     login_company_user
-    visit user_company_product_path(company, Product.last)
+    visit user_company_product_path(company.token, Product.last)
     click_on 'Editar'
 
     fill_in 'Nome', with: 'Ruby on Rails'
@@ -23,7 +23,7 @@ describe 'company user updates a product' do
     fill_in 'Desconto Pix', with: 9
     click_on 'Atualizar'
 
-    expect(current_path).to eq(user_company_product_path(company, Product.last))
+    expect(current_path).to eq(user_company_product_path(company.token, Product.last))
     expect(page).to have_content('Produto atualizado com sucesso')
     expect(page).to have_content('Ruby on Rails')
     expect(page).to have_content('R$ 325,00')
@@ -44,7 +44,7 @@ describe 'company user updates a product' do
                     credit_card_discount: 5, pix_discount: 6,
                     token: SecureRandom.base58(20), company: company)
 
-    visit user_company_products_path(company)
+    visit user_company_products_path(company.token)
     expect(current_path).to eq(new_user_session_path)
   end
 end

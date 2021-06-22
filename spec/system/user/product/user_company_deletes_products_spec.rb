@@ -13,10 +13,10 @@ describe 'user deletes a products' do
                     token: SecureRandom.base58(20), company: company)
 
     login_company_user
-    visit user_company_product_path(company, Product.last)
+    visit user_company_product_path(company.token, Product.last)
 
     expect { click_link 'Apagar' }.to change { Product.count }.by(-1)
     expect(page).to have_content('Produto removido com sucesso')
-    expect(current_path).to eq(user_company_products_path(company))
+    expect(current_path).to eq(user_company_products_path(company.token))
   end
 end

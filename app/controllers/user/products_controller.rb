@@ -11,6 +11,7 @@ class User::ProductsController < ApplicationController
   end
 
   def new
+
     @product = Product.new
   end
 
@@ -18,7 +19,7 @@ class User::ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.company = current_user.company
     if @product.save
-      redirect_to [:user, @company, @product], notice: 'Produto criado com sucesso'
+      redirect_to user_company_product_path(@company.token, @product), notice: 'Produto criado com sucesso'
     else
       render :new
     end
@@ -32,7 +33,7 @@ class User::ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.update(product_params)
     if @product.save
-      redirect_to [:user, @company, @product], notice: 'Produto atualizado com sucesso'
+      redirect_to user_company_product_path(@company.token, @product), notice: 'Produto atualizado com sucesso'
     else
       render :edit
     end
@@ -41,14 +42,14 @@ class User::ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-    redirect_to user_company_products_path(@company), alert: 'Produto removido com sucesso'
+    redirect_to user_company_products_path(@company.token), alert: 'Produto removido com sucesso'
   end
 
 
   private
 
   def set_company
-    @company = Company.find(params[:company_id])
+    @company = Company.find_by(token: params[:company_token])
   end
 
   def product_params

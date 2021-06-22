@@ -11,6 +11,6 @@
 <dt><%= @product.class.human_attribute_name(:token) %></dt>
 <dd><%= @product.token %></dd>
 
-<%= link_to 'Editar', edit_user_company_product_path(@company, @product), class: 'btn btn-primary' %>
+<%= link_to 'Editar', edit_user_company_product_path(@company.token, @product), class: 'btn btn-primary' %>
 <%= link_to 'Voltar', user_company_products_path, class: 'btn btn-primary' %>
-<%= link_to 'Apagar', user_company_product_path(@company, @product), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary' %>
+<%= link_to 'Apagar', user_company_product_path(@company.token, @product), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary' %>

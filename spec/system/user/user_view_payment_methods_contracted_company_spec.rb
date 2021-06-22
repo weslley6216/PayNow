@@ -92,7 +92,7 @@ describe 'User view the payment methods contracted by the company' do
                               billing_email: 'faturamento@codesaga.com.br',
                               token: SecureRandom.base58(20))
 
-    visit user_company_path(company)
+    visit user_company_path(company.token)
 
     expect(current_path).to eq(new_user_session_path)
     expect(page).to have_content('Para continuar, efetue login ou registre-se')

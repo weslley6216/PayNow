@@ -10,7 +10,7 @@
 <h1>Criar Novo Produto</h1>
 
 
-<%= form_with model: [:user, @company, @product] do |form| %> 
+<%= form_with url: user_company_products_path(@company.token), model: [:user, @company, @product] do |form| %> 
 
   <p><%= form.label :name %></p>
   <p><%= form.text_field :name %></p>

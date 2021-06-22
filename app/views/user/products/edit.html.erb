@@ -1,6 +1,6 @@
 <h1>Editar Produto</h1>
 
-<%= form_with model: [:user, @company, @product] do |form| %> 
+<%= form_with url: user_company_product_path(@company.token, @product), model: [:user, @company, @product] do |form| %> 
 
   <p><%= form.label :name %></p>
   <p><%= form.text_field :name %></p>

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :payment_methods
-    resources :companies do
+    resources :companies, except: %i[new create], param: :token do
       resources :charges, only: %i[index show]
       put 'regenerate_token', on: :member
     end
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       resources :credit_cards, only: %i[new create show]
       resources :pixes, only: %i[new create show]
     end
-    resources :companies, only: %i[new create show edit] do
+    resources :companies, only: %i[new create show edit], param: :token do
       put 'regenerate_token', on: :member
       resources :products
     end

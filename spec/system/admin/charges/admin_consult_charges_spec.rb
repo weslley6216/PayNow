@@ -34,7 +34,7 @@ context 'Admin manages charges on the platform' do
       click_on 'CodePlay S.A'
       click_on 'Consultar Cobranças'
 
-      expect(current_path).to eq(admin_company_charges_path(company))
+      expect(current_path).to eq(admin_company_charges_path(company.token))
       expect(page).to have_content('Ruby')
       expect(page).to have_content('Boleto')
       expect(page).to have_content('R$ 450,00')
@@ -69,10 +69,10 @@ context 'Admin manages charges on the platform' do
                               final_client: final_client, product: product, bank_slip: bank_slip)
 
       login_admin
-      visit admin_company_charges_path(company)
+      visit admin_company_charges_path(company.token)
       click_on 'Ruby'
 
-      expect(current_path).to eq(admin_company_charge_path(company, charge))
+      expect(current_path).to eq(admin_company_charge_path(company.token, charge))
       expect(page).to have_content('Ruby')
       expect(page).to have_content('R$ 450')
       expect(page).to have_content('R$ 432')
@@ -91,7 +91,7 @@ context 'Admin manages charges on the platform' do
                                 token: SecureRandom.base58(20))
 
       login_admin
-      visit admin_company_charges_path(company)
+      visit admin_company_charges_path(company.token)
     
       expect(page).to have_content('Nenhuma cobrança disponível no momento')
     end
@@ -122,7 +122,7 @@ context 'Admin manages charges on the platform' do
                               status: :pending, payment_method: payment_method, company: company,
                               final_client: final_client, product: product, bank_slip: bank_slip)
   
-      visit admin_company_charge_path(company, charge)
+      visit admin_company_charge_path(company.token, charge)
   
       expect(current_path).to eq(new_admin_session_path)
       expect(page).to have_content('Para continuar, efetue login ou registre-se')

@@ -9,7 +9,7 @@ describe 'company user registers a product' do
                               token: SecureRandom.base58(20))
 
     login_company_user
-    visit user_company_products_path(company)
+    visit user_company_products_path(company.token)
     click_on 'Cadastrar Produto'
 
     fill_in 'Nome', with: 'Ruby on Rails'
@@ -19,7 +19,7 @@ describe 'company user registers a product' do
     fill_in 'Desconto Pix', with: 6
     click_on 'Cadastrar'
 
-    expect(current_path).to eq(user_company_product_path(company, Product.last))
+    expect(current_path).to eq(user_company_product_path(company.token, Product.last))
     expect(page).to have_content('Produto criado com sucesso')
     expect(page).to have_content('Ruby on Rails')
     expect(page).to have_content('R$ 450,00')
@@ -36,7 +36,7 @@ describe 'company user registers a product' do
                               billing_email: 'faturamento@codeplay.com.br',
                               token: SecureRandom.base58(20))
     login_company_user
-    visit user_company_products_path(company)
+    visit user_company_products_path(company.token)
     click_on 'Cadastrar Produto'
 
     fill_in 'Nome', with: ''
@@ -61,7 +61,7 @@ describe 'company user registers a product' do
                     token: SecureRandom.base58(20), company: company)
 
     login_company_user
-    visit user_company_products_path(company)
+    visit user_company_products_path(company.token)
     click_on 'Cadastrar Produto'
 
     fill_in 'Nome', with: 'Ruby'

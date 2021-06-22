@@ -17,7 +17,7 @@
 <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td><%= link_to product.name, user_company_product_path(@company, product) %></td>
+        <td><%= link_to product.name, user_company_product_path(@company.token, product) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <% end %>
 
-<%= link_to 'Cadastrar Produto', new_user_company_product_path(@company), class: 'btn btn-primary' %>
+<%= link_to 'Cadastrar Produto', new_user_company_product_path(@company.token), class: 'btn btn-primary' %>

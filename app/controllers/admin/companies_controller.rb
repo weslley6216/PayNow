@@ -6,33 +6,33 @@ class Admin::CompaniesController < ApplicationController
   end
 
   def show
-    @company = Company.find(params[:id])
+    @company = Company.find_by(token: params[:token])
   end
 
   def edit
-    @company = Company.find(params[:id])
+    @company = Company.find_by(token: params[:token])
   end
 
   def update
-    @company = Company.find(params[:id])
+    @company = Company.find_by(token: params[:token])
     if @company.update(company_params)
-      redirect_to [:admin, @company], notice: 'Atualizado com sucesso'
+      redirect_to admin_company_path(@company.token), notice: 'Atualizado com sucesso'
     else
       render :edit
     end
   end
 
   def destroy
-    @company = Company.find(params[:id])
+    @company = Company.find_by(token: params[:token])
     @company.destroy
     redirect_to admin_companies_path, notice: 'Empresa removida com sucesso'
   end
 
   def regenerate_token
-    @company = Company.find(params[:id])
+    @company = Company.find_by(token: params[:token])
     @company.token = SecureRandom.base58(20)
     @company.save
-    redirect_to [:admin, @company], notice: 'Token atualizado com sucesso'
+    redirect_to admin_company_path(@company.token), notice: 'Token atualizado com sucesso'
   end
 
   private
@@ -40,4 +40,5 @@ class Admin::CompaniesController < ApplicationController
   def company_params
     params.require(:company).permit(:corporate_name, :cnpj, :billing_address, :billing_email, :token)
   end
+
 end

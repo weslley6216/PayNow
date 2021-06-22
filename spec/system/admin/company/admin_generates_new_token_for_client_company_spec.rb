@@ -11,7 +11,7 @@ describe 'Admin generates a new token for client company' do
     current_token = company.token
 
     login_admin
-    visit admin_company_path(company)
+    visit admin_company_path(company.token)
     click_on 'Gerar novo token'
 
     expect(current_token).to_not eq(Company.last.token)

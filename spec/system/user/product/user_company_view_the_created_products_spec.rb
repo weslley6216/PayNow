@@ -47,7 +47,7 @@ describe 'user of a company view the created products' do
                                 password: '123456', company: company)
 
     login_as company_user, scope: :user
-    visit user_company_products_path(company)
+    visit user_company_products_path(company.token)
     click_on 'Ruby on Rails'
  
     expect(page).to have_content('Ruby on Rails')
@@ -56,7 +56,7 @@ describe 'user of a company view the created products' do
     expect(page).to have_content('8%')
     expect(page).to have_content('9%')
     expect(page).to have_content(Product.last.token)
-    expect(page).to have_link('Voltar', href: user_company_products_path(company))
+    expect(page).to have_link('Voltar', href: user_company_products_path(company.token))
   end
 
   it 'and no products is available' do
@@ -67,7 +67,7 @@ describe 'user of a company view the created products' do
                               token: SecureRandom.base58(20))
 
     login_company_user
-    visit user_company_products_path(company)
+    visit user_company_products_path(company.token)
 
     expect(page).to have_content('Nenhum produto disponível')
   end

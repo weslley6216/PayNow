@@ -36,7 +36,7 @@ describe 'Admin view registered companies' do
     visit admin_companies_path
     click_on 'CodePlay S.A'
 
-    expect(current_path).to eq(admin_company_path(company))
+    expect(current_path).to eq(admin_company_path(company.token))
     expect(page).to have_content('CodePlay S.A')
     expect(page).to have_content('55477618000139')
     expect(page).to have_content('Passagem Morumbi')
@@ -59,7 +59,7 @@ describe 'Admin view registered companies' do
                               billing_email: 'faturamento@codeplay.com.br',
                               token: SecureRandom.base58(20))
                                    
-    visit admin_company_path(company)
+    visit admin_company_path(company.token)
 
     expect(current_path).to eq(new_admin_session_path)
 

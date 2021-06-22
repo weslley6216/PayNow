@@ -19,7 +19,7 @@
     <tbody>
       <% @company.charges.each do |charge| %>
       <tr>
-        <td><%= link_to charge.product.name, admin_company_charge_path(@company, charge) %></td>
+        <td><%= link_to charge.product.name, admin_company_charge_path(@company.token, charge) %></td>
         <td><%= charge.payment_method.class.human_enum_name(:form_of_payment, charge.payment_method.form_of_payment) %></td>
         <td><%= number_to_currency charge.original_value %></td>
         <td><%= charge.class.human_enum_name(:status, charge.status) %></td>

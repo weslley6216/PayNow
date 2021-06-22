@@ -9,7 +9,7 @@ describe 'Admin deletes companies of the plataform' do
                               token: SecureRandom.base58(20))
 
     login_admin
-    visit admin_company_path(company)
+    visit admin_company_path(company.token)
     expect { click_on 'Apagar' }.to change { Company.count }.by(-1)
 
     expect(page).to have_text('Empresa removida com sucesso')
@@ -24,7 +24,7 @@ describe 'Admin deletes companies of the plataform' do
                               billing_email: 'faturamento@codeplay.com.br',
                               token: SecureRandom.base58(20))
 
-    visit admin_company_path(company)
+    visit admin_company_path(company.token)
 
     expect(current_path).to eq(new_admin_session_path)
     expect(page).to have_content('Para continuar, efetue login ou registre-se')

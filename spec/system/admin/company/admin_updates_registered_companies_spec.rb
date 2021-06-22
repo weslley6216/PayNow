@@ -8,7 +8,7 @@ describe 'Admin updates registered companies on the plataform' do
                               billing_email: 'faturamento@codplay.com.br',
                               token: SecureRandom.base58(20))
     login_admin
-    visit admin_company_path(company)
+    visit admin_company_path(company.token)
     click_on 'Editar'
 
     fill_in 'CNPJ', with: '00001111222233'
@@ -17,7 +17,7 @@ describe 'Admin updates registered companies on the plataform' do
     fill_in 'Email para Faturamento', with: 'faturamento@codeplay.com.br'
     click_on 'Atualizar'
 
-    expect(current_path).to eq(admin_company_path(company))
+    expect(current_path).to eq(admin_company_path(company.token))
     expect(page).to have_content('CodePlay S.A')
     expect(page).to have_content('00001111222233')
     expect(page).to have_content('Passagem Morumbi')
@@ -33,7 +33,7 @@ describe 'Admin updates registered companies on the plataform' do
                               token: SecureRandom.base58(20))
 
     login_admin
-    visit admin_company_path(company)
+    visit admin_company_path(company.token)
     click_on 'Editar'
 
     fill_in 'Razão Social', with: ''
@@ -52,7 +52,7 @@ describe 'Admin updates registered companies on the plataform' do
                               billing_email: 'faturamento@codplay.com.br',
                               token: SecureRandom.base58(20))
 
-    visit admin_company_path(company)
+    visit admin_company_path(company.token)
 
     expect(current_path).to eq(new_admin_session_path)
     expect(page).to have_content('Para continuar, efetue login ou registre-se')
