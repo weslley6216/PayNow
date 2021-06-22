@@ -14,4 +14,4 @@ pt-BR:
         created_at: 'Data e Hora da Compra'
         statuses:
           pending: 'Pendente'
-          approved: 'Aprovado'
+          approved: 'Aprovada'

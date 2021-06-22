@@ -4,43 +4,43 @@ Admin.create!(email: 'admin2@paynow.com.br', password: '123456')
 
 #Registered means of payment
 bank_slip = PaymentMethod.create!(name: 'Boleto Banco Laranja',
-                                 tax: 8, max_tax: 40,
-                                 status: true, form_of_payment: 1)
+                                  tax: 8, max_tax: 40,
+                                  status: true, form_of_payment: 1)
 
 credit_card = PaymentMethod.create!(name: 'Cartão de Crédito MestreCard',
-                                 tax: 15, max_tax: 50,
-                                 status: true, form_of_payment: 2)
+                                    tax: 15, max_tax: 50,
+                                    status: true, form_of_payment: 2)
 
 pix = PaymentMethod.create!(name: 'Pix Banco Roxinho',
-                                 tax: 6, max_tax: 25,
-                                 status: true, form_of_payment: 3)
+                            tax: 6, max_tax: 25,
+                            status: true, form_of_payment: 3)
 
 PaymentMethod.create!(name: 'Boleto Banco Azul',
-                                 tax: 14.5, max_tax: 68.9,
-                                 status: false, form_of_payment: 1)
+                      tax: 14.5, max_tax: 68.9,
+                      status: false, form_of_payment: 1)
 
 PaymentMethod.create!(name: 'Cartão de Crédito PISA',
-                                 tax: 7, max_tax: 89.9,
-                                 status: false, form_of_payment: 2)
+                      tax: 7, max_tax: 89.9,
+                      status: false, form_of_payment: 2)
 
 # Registered Companies
 company1 = Company.create!(corporate_name: 'CodePlay S.A',
-                                      cnpj: '55477618000139',
-                                      billing_address: 'Passagem Morumbi',
-                                      billing_email: 'faturamento@codeplay.com.br',
-                                      token: SecureRandom.base58(20))
+                           cnpj: '55477618000139',
+                           billing_address: 'Passagem Morumbi',
+                           billing_email: 'faturamento@codeplay.com.br',
+                           token: SecureRandom.base58(20))
 
 company2 = Company.create!(corporate_name: 'CodeSaga S.A',
-                                      cnpj: '38201880001939',
-                                      billing_address: 'Alameda Santos',
-                                      billing_email: 'faturamento@codesaga.com.br',
-                                      token: SecureRandom.base58(20))
+                           cnpj: '38201880001939',
+                           billing_address: 'Alameda Santos',
+                           billing_email: 'faturamento@codesaga.com.br',
+                           token: SecureRandom.base58(20))
 
 company3 = Company.create!(corporate_name: 'CodeWars S.A',
-                                      cnpj: '54201220001939',
-                                      billing_address: 'Passagem Pacaembu',
-                                      billing_email: 'faturamento@codewars.com.br',
-                                      token: SecureRandom.base58(20))
+                           cnpj: '54201220001939',
+                           billing_address: 'Passagem Pacaembu',
+                           billing_email: 'faturamento@codewars.com.br',
+                           token: SecureRandom.base58(20))
 
 #Paynow customers and their respective companies
 User.create!(email: 'user@codeplay.com.br', password: '123456', company: company1)
@@ -67,7 +67,6 @@ Pix.create!(bank_number: '001', pix_key: 'a46Hu7dV545t24591ZU1',
             payment_method: pix, company: company3)
 
 #Products registered by customers
-
 Product.create!(name: 'Ruby', price: 210, bank_slip_discount: 4,
                 credit_card_discount: 5, pix_discount: 6,
                 token: SecureRandom.base58(20), company: company1)
@@ -96,6 +95,11 @@ Product.create!(name: 'Aprendendo Algorítmos', price: 49.9, bank_slip_discount:
                 credit_card_discount: 6, pix_discount: 12,
                 token: SecureRandom.base58(20), company: company3)
 
+FinalClient.create!(name: 'João Silva', cpf: '12345678910',
+                    token: SecureRandom.base58(20))
 
+Charge.create!(original_value: 49.9, discounted_amount: 40.9, status: :pending,
+               payment_method: PaymentMethod.first, company: Company.first,
+               final_client: FinalClient.first, product: Product.last)
 
 puts 'Banco de Dados Populado com Sucesso!'

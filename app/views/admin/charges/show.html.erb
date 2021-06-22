@@ -13,7 +13,17 @@
       <dd><%= @charge.final_client.name %></dd>
       <dt><%= @charge.final_client.class.human_attribute_name(:cpf) %></dt>
       <dd><%= @charge.final_client.cpf %></dd>
+      <dt><%= @charge.class.human_attribute_name(:status) %></dt>
+      <dd><%= @charge.class.human_enum_name(:status, @charge.status) %></dd>
       <dt><%= @charge.class.human_attribute_name(:created_at) %></dt>
       <dd><%= I18n.l(@charge.created_at, format: :short) %></dd>
   </div>
 </div>
+
+<% if @charge.pending? %>
+  <%= form_with url: admin_company_charge_path(@company.token, @charge), model: [:admin, @company, @charge] do |form| %>
+    <p><%= form.label :status %></p>
+    <p><%= form.select(:status, @status_options)%></p>
+    <p><%= form.submit 'Atualizar Status Cobrança', class: 'btn btn-primary' %></p>
+  <% end %>
+<% end %>
