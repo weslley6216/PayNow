@@ -6,7 +6,7 @@ class Api::V1::ApiController < ActionController::API
   private
 
   def not_found
-    head 404
+    render json: { errors: 'parãmetros inválidos' }, status: 404
   end
 
   def record_invalid(exception)

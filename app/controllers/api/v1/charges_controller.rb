@@ -1,4 +1,20 @@
 class Api::V1::ChargesController < Api::V1::ApiController
+
+  def index
+    @company = Company.find_by!(token: params[:company_token])
+    render json: @company.charges.as_json(except: %i[id
+                                                     created_at
+                                                     updated_at
+                                                     payment_method_id
+                                                     bank_slip_id
+                                                     credit_card_id
+                                                     pix_id
+                                                     company_id
+                                                     final_client_id
+                                                     product_id
+                                                    ]), status: 200
+  end
+
   def create
     @company = Company.find_by!(token: params[:charge][:company_token])
     @payment_method = PaymentMethod.find_by(id: params[:charge][:payment_method_id])

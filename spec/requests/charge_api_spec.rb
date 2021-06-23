@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Charge API' do
-  context 'POST /api/v1/charge' do
+  context 'POST /api/v1/charges' do
     it 'must create a bank slip payment method' do
 
       company = Company.create!(corporate_name: 'CodePlay S.A',

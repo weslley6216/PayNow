@@ -77,3 +77,126 @@ email: user@codeplay.com.br, senha: 123456
 ```
 
 
+## API
+### Registro de cliente final
+#### __POST /api/v1/final_clients__
+* o endpoint para criação e associação de um cliente externo e uma empresa cliente PayNow, espera receber os seguintes parâmetros:
+```
+ {
+	"final_client": 
+	 { 
+		 "name": "João Silvaa", 
+		 "cpf": "12345678900" 
+	 },
+	"company_token": "d9iYYR9T8Pm6CZ8VSoQ4"  
+ }
+```
+#### Possíveis Respostas
+* HTTP Status: 201 - Criado com Sucesso
+
+Exemplo:
+```
+{
+  "name": "João Silvaa",
+  "cpf": "12345678900",
+  "token": "TBuPqLQTTyjjyPcj3tB5"
+}
+```
+* HTTP Status: 422 - Parâmetros inválidos para criação de cliente (parametros em branco ou não respeitando as validações)
+
+Exemplo:
+```
+{
+  "name": [
+    "não pode ficar em branco"
+  ],
+  "cpf": [
+    "não pode ficar em branco",
+    "não é um número",
+    "não possui o tamanho esperado (11 caracteres)"
+  ]
+}
+```
+
+#### __post '/api/v1/charges'__
+* o endpoint para criação de cobrança:
+
+```
+{
+	"charge": 
+	{
+
+          "company_token": "zwen2nD94hetVELagMdD",
+          "product_token": "19qGYnK7WewzP1R33LnK",
+          "payment_method_id": "1",
+          "final_client_token": "EBSQz4UbZBnSt32A8tmN",
+          "bank_slip_id": "1",
+          "address": "Colméias, 83",
+          "district": "Alvarenga",
+          "zip_code": "09856-280",
+          "city": "São Bernardo do Campo - SP"
+
+        }
+}
+
+```
+#### Possíveis Respostas
+* HTTP Status: 201 - Criado com Sucesso
+
+Exemplo:
+```
+{
+  "original_value": "49.9",
+  "discounted_amount": "40.918",
+  "token": "W5N8iBaukrC76frPmz3h",
+  "status": "pending",
+  "card_number": null,
+  "card_holder_name": null,
+  "cvv": null,
+  "address": "Colméias, 83",
+  "district": "Alvarenga",
+  "zip_code": "09856-280",
+  "city": "São Bernardo do Campo - SP"
+}
+```
+* HTTP Status: 422 - Parâmetros inválidos para criação de cliente (parametros em branco ou não respeitando as validações)
+```
+{
+  "errors": "parâmetros inválidos"
+}
+```
+
+#### __get '/api/v1/charges'__
+* o endpoint para visualização de todas as cobranças:
+
+      {
+        "company_token": "zwen2nD94hetVELagMdD"
+      }  
+
+#### Possíveis Respostas
+* HTTP Status: 200 - OK
+
+Exemplo:
+```
+[
+  {
+    "original_value": "49.9",
+    "discounted_amount": "40.9",
+    "token": "2qXUtBZfdVDqGC7cvLNX",
+    "status": "pending",
+    "card_number": null,
+    "card_holder_name": null,
+    "cvv": null,
+    "address": null,
+    "district": null,
+    "zip_code": null,
+    "city": null
+  }
+]
+```
+* HTTP Status: 404 - Parâmetros inválidos para criação de cliente (parametros em branco ou não respeitando as validações)
+```
+{
+  "errors": "parâmetros inválidos"
+}
+```
