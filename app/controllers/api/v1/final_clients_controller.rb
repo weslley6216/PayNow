@@ -5,7 +5,9 @@ class Api::V1::FinalClientsController < Api::V1::ApiController
       @final_client = FinalClient.create!(final_client_params)
     end
     @client_company = @final_client.final_client_companies.create!(company: @company)
-    render json: @final_client, status: :created
+    render json: @final_client.as_json(except: %i[id
+                                                  created_at
+                                                  updated_at]), status: :created
   rescue ActiveRecord::RecordInvalid
     if @final_client.errors.any?
       render json: @final_client.errors, status: :unprocessable_entity
