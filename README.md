@@ -6,7 +6,7 @@ Uma escola de programação, a CodePlay, decidiu lançar uma plataforma de curso
 
 ## Requisitos Necessários:
 
-* Ruby 3.0.0
+* Ruby 3.0.1
 * Rails 6.1.3.2
 
 ### Gems adcionais

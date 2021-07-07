@@ -19,5 +19,6 @@ class Company < ApplicationRecord
 
   def token_generate
     self.token = SecureRandom.base58(20)
+    token_generate if Company.exists?(token: self.token)
   end
 end
